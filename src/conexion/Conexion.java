@@ -9,5 +9,6 @@ package conexion;
  * @author danyv
  */
 public class Conexion {
+    private String usuario;
     
 }
