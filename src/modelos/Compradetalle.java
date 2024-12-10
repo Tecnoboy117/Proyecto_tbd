@@ -4,6 +4,9 @@
  */
 package modelos;
 
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author josea
@@ -54,4 +57,49 @@ public class Compradetalle {
     public void setCvcompra(int cvcompra) {
         this.cvcompra = cvcompra;
     } 
+    public static void agregarCompradetalle(Connection conn, Compradetalle detalle) throws SQLException {
+        String sql = "INSERT INTO detallecompra (cantidad, precioc, cvproducto, cvcompra) VALUES (?, ?, ?, ?)";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, detalle.cantidad);
+            stmt.setDouble(2, detalle.precioc);
+            stmt.setString(3, detalle.cvproducto);
+            stmt.setInt(4, detalle.cvcompra);
+            stmt.executeUpdate();
+            System.out.println("Detalle agregado: " + detalle);
+        }
+    }
+
+    // Método para eliminar un detalle de compra por ID de compra
+    public static void eliminarDetalleCompra(Connection conn, int cvcompra) throws SQLException {
+        String sql = "DELETE FROM detallecompra WHERE cvcompra = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, cvcompra);
+            stmt.executeUpdate();
+            System.out.println("Detalle eliminado con ID de compra: " + cvcompra);
+        }
+    }
+
+    // Método para listar todos los detalles de compra
+    public static List<Compradetalle> listarCompradetalle(Connection conn) throws SQLException {
+        String sql = "SELECT * FROM detallecompra";
+        List<Compradetalle> detalles = new ArrayList<>();
+        try (PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                detalles.add(new Compradetalle(
+                        rs.getInt("cantidad"),
+                        rs.getDouble("precioc"),
+                        rs.getString("cvproducto"),
+                        rs.getInt("cvcompra")
+                ));
+            }
+        }
+        return detalles;
+    }
+
+    @Override
+    public String toString() {
+        return "Compradetalle{" + "cantidad=" + cantidad + ", precioc=" + precioc + ", cvproducto=" + cvproducto + ", cvcompra=" + cvcompra + '}';
+    }
+    
 }

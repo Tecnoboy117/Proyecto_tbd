@@ -61,7 +61,7 @@ public class CrearTablas {
             stmt.executeUpdate(compradetalleTable);
             stmt.executeUpdate(pagosCPATable);
 
-            System.out.println("Yupi las tablas creadas con éxito en la base de datos 'finaltienda'." );
+            System.out.println("Yupi las tablas creadas con exito en la base de datos 'finaltienda'." );
 
         } catch (Exception e) {
             System.err.println("error al crear las tablas: " + e.getMessage());

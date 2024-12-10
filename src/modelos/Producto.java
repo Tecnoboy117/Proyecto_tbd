@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package modelos;
-
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author josea
@@ -104,5 +106,75 @@ public class Producto {
     public void setOferta(int oferta) {
         this.oferta = oferta;
     }
+    public static void agregarProducto(Connection conn, Producto producto) throws SQLException {
+        String sql = "INSERT INTO producto (cvproducto, nombre, marca, existencias, preciov, precioc, preciovo, estado, oferta) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, producto.cvproducto);
+            stmt.setString(2, producto.nombre);
+            stmt.setString(3, producto.marca);
+            stmt.setInt(4, producto.existencias);
+            stmt.setDouble(5, producto.preciov);
+            stmt.setDouble(6, producto.precioc);
+            stmt.setDouble(7, producto.preciovo);
+            stmt.setInt(8, producto.estado);
+            stmt.setInt(9, producto.oferta);
+            stmt.executeUpdate();
+            System.out.println("Producto agregado: " + producto);
+        }
+    }
 
+    // Método para eliminar un producto por clave
+    public static void eliminarProducto(Connection conn, String cvproducto) throws SQLException {
+        String sql = "DELETE FROM producto WHERE cvproducto = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, cvproducto);
+            stmt.executeUpdate();
+            System.out.println("Producto eliminado con clave: " + cvproducto);
+        }
+    }
+
+    // Método para listar todos los productos
+    public static List<Producto> listarProductos(Connection conn) throws SQLException {
+        String sql = "SELECT * FROM producto";
+        List<Producto> productos = new ArrayList<>();
+        try (PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                productos.add(new Producto(
+                        rs.getString("cvproducto"),
+                        rs.getString("nombre"),
+                        rs.getString("marca"),
+                        rs.getInt("existencias"),
+                        rs.getDouble("preciov"),
+                        rs.getDouble("precioc"),
+                        rs.getDouble("preciovo"),
+                        rs.getInt("estado"),
+                        rs.getInt("oferta")
+                ));
+            }
+        }
+        return productos;
 }
+    public static void modificarProducto(Connection conn, Producto producto) throws SQLException {
+    String sql = "UPDATE producto SET nombre = ?, marca = ?, existencias = ?, preciov = ?, precioc = ?, preciovo = ?, estado = ?, oferta = ? WHERE cvproducto = ?";
+    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setString(1, producto.nombre);
+        stmt.setString(2, producto.marca);
+        stmt.setInt(3, producto.existencias);
+        stmt.setDouble(4, producto.preciov);
+        stmt.setDouble(5, producto.precioc);
+        stmt.setDouble(6, producto.preciovo);
+        stmt.setInt(7, producto.estado);
+        stmt.setInt(8, producto.oferta);
+        stmt.setString(9, producto.cvproducto);
+        stmt.executeUpdate();
+        System.out.println("Producto modificado: " + producto);
+    }
+}
+
+    @Override
+    public String toString() {
+        return "Producto{" + "cvproducto=" + cvproducto + ", nombre=" + nombre + ", marca=" + marca + ", existencias=" + existencias + ", preciov=" + preciov + ", precioc=" + precioc + ", preciovo=" + preciovo + ", estado=" + estado + ", oferta=" + oferta + '}';
+    }
+}
+
