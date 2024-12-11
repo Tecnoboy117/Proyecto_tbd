@@ -96,6 +96,37 @@ public class Compradetalle {
         }
         return detalles;
     }
+    public static void modificarCompradetalle(Connection conn, Compradetalle detalle) throws SQLException {
+    String sql = "UPDATE detallecompra SET cantidad = ?, precioc = ? WHERE cvcompra = ? AND cvproducto = ?";
+    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setInt(1, detalle.cantidad);
+        stmt.setDouble(2, detalle.precioc);
+        stmt.setInt(3, detalle.cvcompra);
+        stmt.setString(4, detalle.cvproducto);
+        stmt.executeUpdate();
+        System.out.println("Detalle de compra modificado: " + detalle);
+    }
+}
+
+// Método para buscar un detalle de compra por ID de compra
+public static List<Compradetalle> buscarCompradetalle(Connection conn, int cvcompra) throws SQLException {
+    String sql = "SELECT * FROM detallecompra WHERE cvcompra = ?";
+    List<Compradetalle> detalles = new ArrayList<>();
+    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setInt(1, cvcompra);
+        try (ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                detalles.add(new Compradetalle(
+                        rs.getInt("cantidad"),
+                        rs.getDouble("precioc"),
+                        rs.getString("cvproducto"),
+                        rs.getInt("cvcompra")
+                ));
+            }
+        }
+    }
+    return detalles;
+}
 
     @Override
     public String toString() {

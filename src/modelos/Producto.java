@@ -171,6 +171,28 @@ public class Producto {
         System.out.println("Producto modificado: " + producto);
     }
 }
+    public static Producto buscarProducto(Connection conn, String cvproducto) throws SQLException {
+    String sql = "SELECT * FROM producto WHERE cvproducto = ?";
+    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setString(1, cvproducto);
+        try (ResultSet rs = stmt.executeQuery()) {
+            if (rs.next()) {
+                return new Producto(
+                        rs.getString("cvproducto"),
+                        rs.getString("nombre"),
+                        rs.getString("marca"),
+                        rs.getInt("existencias"),
+                        rs.getDouble("preciov"),
+                        rs.getDouble("precioc"),
+                        rs.getDouble("preciovo"),
+                        rs.getInt("estado"),
+                        rs.getInt("oferta")
+                );
+            }
+        }
+    }
+    return null;
+}
 
     @Override
     public String toString() {
