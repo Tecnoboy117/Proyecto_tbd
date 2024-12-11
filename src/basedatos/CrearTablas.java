@@ -52,6 +52,13 @@ public class CrearTablas {
                 FOREIGN KEY (cvcompra) REFERENCES compra(cvcompra)
             );
         """;
+        String usuariosTable = """
+            CREATE TABLE IF NOT EXISTS usuarios (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                usuario VARCHAR(20) NOT NULL UNIQUE,
+                password VARCHAR(256) NOT NULL
+            );
+        """;
 
         try (Connection con = Conexion.getConexion();
              Statement stmt = con.createStatement()) {
@@ -60,6 +67,7 @@ public class CrearTablas {
             stmt.executeUpdate(compraTable);
             stmt.executeUpdate(compradetalleTable);
             stmt.executeUpdate(pagosCPATable);
+            stmt.executeUpdate(usuariosTable);
 
             System.out.println("Yupi las tablas creadas con exito en la base de datos 'finaltienda'." );
 
