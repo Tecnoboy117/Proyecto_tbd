@@ -243,6 +243,7 @@
                 <Property name="text" type="java.lang.String" value="Ingresar"/>
               </Properties>
               <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jingMouseClicked"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jingActionPerformed"/>
               </Events>
             </Component>

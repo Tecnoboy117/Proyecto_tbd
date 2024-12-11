@@ -1,15 +1,35 @@
 
 package login;
 
+import Controladores.ControladorUsuarios;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import modelos.Usuarios;
 
 public class Login extends javax.swing.JFrame {
-
-  
+    private ControladorUsuarios controlUsu;
     public Login() {
         initComponents();
+        Usuarios modeloUsu = new Usuarios();
+        controlUsu = new ControladorUsuarios(modeloUsu,this);
     }
 
- 
+    public String getJpass() {
+        char [] contra= jpass.getPassword();
+        String password = new String(contra);
+        System.out.println(contra);
+        return password;
+        
+    }
+
+    public String getJuser() {
+        System.out.println(this.juser.getText());
+        return juser.getText();
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -91,6 +111,11 @@ public class Login extends javax.swing.JFrame {
         jing.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jing.setForeground(new java.awt.Color(255, 255, 255));
         jing.setText("Ingresar");
+        jing.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jingMouseClicked(evt);
+            }
+        });
         jing.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jingActionPerformed(evt);
@@ -186,6 +211,15 @@ public class Login extends javax.swing.JFrame {
     private void jingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jingActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jingActionPerformed
+
+    private void jingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jingMouseClicked
+        try {
+            // TODO add your handling code here:
+            controlUsu.acceso();
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jingMouseClicked
 
     /**
      * @param args the command line arguments

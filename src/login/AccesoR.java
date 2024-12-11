@@ -1,15 +1,35 @@
 
 package login;
 
+import Controladores.ControladorUsuarios;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import modelos.Usuarios;
+
 
 public class AccesoR extends javax.swing.JFrame {
-
- 
+    
+    private ControladorUsuarios controlUsu;
+    
     public AccesoR() {
         initComponents();
+        Usuarios modeloUsu = new Usuarios();
+        controlUsu = new ControladorUsuarios(modeloUsu,this);
     }
 
-  
+    public String getjPasswordCrea() {
+        char [] password = this.jPasswordCrea.getPassword();
+        String pass = new String(password);
+        return pass;
+    }
+
+    public String getjUsuario() {
+        return jUsuario.getText();
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -20,8 +40,6 @@ public class AccesoR extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jNombre = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jUsuario = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -76,18 +94,6 @@ public class AccesoR extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setText("Crea tu Cuenta");
 
-        jLabel5.setBackground(new java.awt.Color(102, 102, 102));
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel5.setText("Nombre Completo");
-
-        jNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jNombre.setForeground(new java.awt.Color(102, 102, 102));
-        jNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jNombreActionPerformed(evt);
-            }
-        });
-
         jLabel6.setBackground(new java.awt.Color(102, 102, 102));
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel6.setText("Usuario");
@@ -107,6 +113,11 @@ public class AccesoR extends javax.swing.JFrame {
         jIngresar.setBackground(new java.awt.Color(0, 102, 102));
         jIngresar.setForeground(new java.awt.Color(255, 255, 255));
         jIngresar.setText("Ingresar");
+        jIngresar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jIngresarMouseClicked(evt);
+            }
+        });
         jIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jIngresarActionPerformed(evt);
@@ -134,17 +145,15 @@ public class AccesoR extends javax.swing.JFrame {
                         .addGap(44, 44, 44)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel5)
-                                .addComponent(jNombre)
                                 .addComponent(jLabel6)
                                 .addComponent(jUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
                                 .addComponent(jLabel7)
                                 .addComponent(jPasswordCrea))
-                            .addComponent(jIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addGap(33, 33, 33)
-                                .addComponent(jRegreso, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jRegreso, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -152,25 +161,21 @@ public class AccesoR extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jLabel4)
-                .addGap(29, 29, 29)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addGap(38, 38, 38)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPasswordCrea, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(41, 41, 41)
                 .addComponent(jIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jRegreso, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addGap(69, 69, 69))
         );
 
         jPanel1.add(jPanel3);
@@ -203,9 +208,14 @@ public class AccesoR extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jIngresarActionPerformed
 
-    private void jNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jNombreActionPerformed
+    private void jIngresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jIngresarMouseClicked
+        try {
+            // TODO add your handling code here:
+            this.controlUsu.registro();
+        } catch (SQLException ex) {
+            Logger.getLogger(AccesoR.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jIngresarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -217,11 +227,9 @@ public class AccesoR extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JTextField jNombre;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
