@@ -70,12 +70,12 @@ public class Compradetalle {
     }
 
     // Método para eliminar un detalle de compra por ID de compra
-    public static void eliminarDetalleCompra(Connection conn, int cvcompra) throws SQLException {
+    public static boolean eliminarDetalleCompra(Connection conn, int cvcompra) throws SQLException {
         String sql = "DELETE FROM detallecompra WHERE cvcompra = ?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, cvcompra);
-            stmt.executeUpdate();
-            System.out.println("Detalle eliminado con ID de compra: " + cvcompra);
+            int row = stmt.executeUpdate();
+            return row > 0;
         }
     }
 
@@ -96,15 +96,15 @@ public class Compradetalle {
         }
         return detalles;
     }
-    public static void modificarCompradetalle(Connection conn, Compradetalle detalle) throws SQLException {
+    public static boolean modificarCompradetalle(Connection conn, Compradetalle detalle) throws SQLException {
     String sql = "UPDATE detallecompra SET cantidad = ?, precioc = ? WHERE cvcompra = ? AND cvproducto = ?";
     try (PreparedStatement stmt = conn.prepareStatement(sql)) {
         stmt.setInt(1, detalle.cantidad);
         stmt.setDouble(2, detalle.precioc);
         stmt.setInt(3, detalle.cvcompra);
         stmt.setString(4, detalle.cvproducto);
-        stmt.executeUpdate();
-        System.out.println("Detalle de compra modificado: " + detalle);
+        int row = stmt.executeUpdate();
+        return row > 0;
     }
 }
 

@@ -1,5 +1,5 @@
 
-package login;
+package vistas;
 
 import Controladores.ControladorUsuarios;
 import java.sql.SQLException;

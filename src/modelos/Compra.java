@@ -78,7 +78,7 @@ private int cvcompra;
     public void setEstado(int estado) {
         this.estado = estado;
     }
-    public static void agregarCompra(Connection conn, Compra compra) throws SQLException {
+    public static boolean agregarCompra(Connection conn, Compra compra) throws SQLException {
         String sql = "INSERT INTO compra (cvcompra, fecha, total, subtotal, iva, estado) VALUES (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, compra.cvcompra);
@@ -87,18 +87,18 @@ private int cvcompra;
             stmt.setDouble(4, compra.subtotal);
             stmt.setDouble(5, compra.iva);
             stmt.setInt(6, compra.estado);
-            stmt.executeUpdate();
-            System.out.println("Compra agregada: " + compra);
+            int row = stmt.executeUpdate();
+            return row > 0;
         }
     }
 
     // Método para eliminar una compra por ID
-    public static void eliminarCompra(Connection conn, int cvcompra) throws SQLException {
+    public static boolean eliminarCompra(Connection conn, int cvcompra) throws SQLException {
         String sql = "DELETE FROM compra WHERE cvcompra = ?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, cvcompra);
-            stmt.executeUpdate();
-            System.out.println("Compra eliminada con ID: " + cvcompra);
+            int row = stmt.executeUpdate();
+            return row > 0;
         }
     }
 
@@ -121,7 +121,7 @@ private int cvcompra;
         }
         return compras;
     }
-    public static void modificarCompra(Connection conn, Compra compra) throws SQLException {
+    public static boolean modificarCompra(Connection conn, Compra compra) throws SQLException {
     String sql = "UPDATE compra SET fecha = ?, total = ?, subtotal = ?, iva = ?, estado = ? WHERE cvcompra = ?";
     try (PreparedStatement stmt = conn.prepareStatement(sql)) {
         stmt.setDate(1, new java.sql.Date(compra.fecha.getTime()));
@@ -130,8 +130,8 @@ private int cvcompra;
         stmt.setDouble(4, compra.iva);
         stmt.setInt(5, compra.estado);
         stmt.setInt(6, compra.cvcompra);
-        stmt.executeUpdate();
-        System.out.println("Compra modificada: " + compra);
+        int row = stmt.executeUpdate();
+        return row > 0;
     }
 }
     public static Compra buscarCompra(Connection conn, int cvcompra) throws SQLException {

@@ -61,12 +61,12 @@ public class Usuarios {
     }
 
     // Método para eliminar un usuario por ID
-    public static void eliminarUsuario(Connection conn, int id) throws SQLException {
+    public static boolean eliminarUsuario(Connection conn, int id) throws SQLException {
         String sql = "DELETE FROM usuarios WHERE id = ?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
-            stmt.executeUpdate();
-            System.out.println("Usuario eliminado con ID: " + id);
+            int row = stmt.executeUpdate();
+            return row > 0;
         }
     }
 
