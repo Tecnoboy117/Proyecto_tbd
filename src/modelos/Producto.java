@@ -178,6 +178,7 @@ public class Producto {
         stmt.setString(1, cvproducto);
         try (ResultSet rs = stmt.executeQuery()) {
             if (rs.next()) {
+                System.out.println("hola");
                 return new Producto(
                         rs.getString("cvproducto"),
                         rs.getString("nombre"),
@@ -188,10 +189,11 @@ public class Producto {
                         rs.getDouble("preciosvo"),
                         rs.getInt("estado")
                 );
+            }else{
+                return null;
             }
         }
     }
-    return null;
 }
 
     @Override

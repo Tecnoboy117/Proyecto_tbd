@@ -133,7 +133,7 @@ public class ProductosT extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(0, 204, 51));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButtonCOMPRAS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/añadeventa.png"))); // NOI18N
+        jButtonCOMPRAS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/añadeventa_1.png"))); // NOI18N
         jButtonCOMPRAS.setText("Compras");
         jButtonCOMPRAS.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel3.add(jButtonCOMPRAS, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 170, -1));
@@ -478,20 +478,27 @@ public class ProductosT extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarPMouseClicked
-        Producto modeloP = new Producto();
-        ControladorProducto productoC = new ControladorProducto(this);
-        try {
-            // TODO add your handling code here:
-            
-            if(productoC.registrarProductos()){
-                JOptionPane.showMessageDialog(null, "El producto se registro", "Acceso denegado", 1);
-            }else{
-                JOptionPane.showMessageDialog(null, "El producto no se registro", "Acceso denegado", 1);
+        if(!tfProducto.getText().equals("") && !this.tfCodigo.getText().equals("") && !this.tfExitencias.getText().equals("") && !this.tfMarca.getText().equals("") && !this.tfPrecio.getText().equals("")){
+            Producto modeloP = new Producto();
+            ControladorProducto productoC = new ControladorProducto(this);
+            try {
+                // TODO add your handling code here:
+                if(productoC.buscarProductos(this.tfCodigo.getText()) != null){
+                   if(productoC.registrarProductos()){
+                        JOptionPane.showMessageDialog(null, "El producto se registro", "Registro aceptado", 1);
+                    }else{
+                        JOptionPane.showMessageDialog(null, "El producto no se registro", "Registro denegado", 1);
+                    } 
+                }else{
+                    JOptionPane.showMessageDialog(null, "El producto no se registro", "Registro denegado", 1);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(ProductosT.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(ProductosT.class.getName()).log(Level.SEVERE, null, ex);
+            actualizar();
+        } else {
+            JOptionPane.showMessageDialog(null, "Hay algún campo vacio aún", "Acceso denegado", 1);
         }
-        actualizar();
     }//GEN-LAST:event_btnGuardarPMouseClicked
 
     private void tfProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfProductoActionPerformed
@@ -499,35 +506,6 @@ public class ProductosT extends javax.swing.JFrame {
     }//GEN-LAST:event_tfProductoActionPerformed
     private void actualizar(){
         
-    }
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ProductosT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ProductosT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ProductosT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ProductosT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

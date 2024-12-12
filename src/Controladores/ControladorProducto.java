@@ -22,14 +22,14 @@ public class ControladorProducto {
     }
     public boolean registrarProductos() throws SQLException{
         Producto modeloP = new Producto();
-        modeloP.setCvproducto(sistema.getTfCodigo().getText());
-        modeloP.setNombre(sistema.getTfProducto().getText());
-        modeloP.setMarca(sistema.getTfMarca().getText());
-        modeloP.setExistencias(Integer.parseInt(sistema.getTfExitencias().getText()));
-        modeloP.setPreciosu(Integer.parseInt(sistema.getTfPrecio().getText()));
-        modeloP.setPreciosc(0);
-        modeloP.setPreciosvo(0);
-        return Producto.agregarProducto(con.getConexion(), modeloP);
+            modeloP.setCvproducto(sistema.getTfCodigo().getText());
+            modeloP.setNombre(sistema.getTfProducto().getText());
+            modeloP.setMarca(sistema.getTfMarca().getText());
+            modeloP.setExistencias(Integer.parseInt(sistema.getTfExitencias().getText()));
+            modeloP.setPreciosu(Integer.parseInt(sistema.getTfPrecio().getText()));
+            modeloP.setPreciosc(0);
+            modeloP.setPreciosvo(0);
+            return Producto.agregarProducto(con.getConexion(), modeloP);
     }
     
     public void actualizarProducto(){
@@ -40,7 +40,13 @@ public class ControladorProducto {
         Producto modeloP = new Producto();
     }
     
-    public void buscarProductos(){
+    public Producto buscarProductos(String cvproducto) throws SQLException{
         Producto modeloP = new Producto();
+        Producto p = modeloP.buscarProducto(con.getConexion(), cvproducto);
+        if(p != null){
+            return p;
+        }else{
+            return null;
+        }
     }
 }
