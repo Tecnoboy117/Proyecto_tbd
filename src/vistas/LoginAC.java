@@ -6,10 +6,12 @@ public class LoginAC {
 
     public static void main(String[] args) {
 
-        Login LoginF = new Login();
-        LoginF.setVisible(true);
-        LoginF.pack();
-        LoginF.setLocationRelativeTo(null); 
+        java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new Login().setVisible(true);
+                }
+            });
+
     }
     
 }

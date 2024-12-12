@@ -26,6 +26,7 @@ public class ProductosT extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel3 = new javax.swing.JPanel();
         jButtonCOMPRAS = new javax.swing.JButton();
         jButtonCD = new javax.swing.JButton();
         jButtonProductos = new javax.swing.JButton();
@@ -35,24 +36,24 @@ public class ProductosT extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        txtProductoCODIGO = new javax.swing.JTextField();
-        txtproductoPRECIO = new javax.swing.JTextField();
-        txtproductoPRODUCTO = new javax.swing.JTextField();
+        tfCodigo = new javax.swing.JTextField();
+        tfPrecio = new javax.swing.JTextField();
+        tfProducto = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        txtproductoCANTIDAD = new javax.swing.JTextField();
-        jBDELETEprod = new javax.swing.JButton();
-        jBSAVEprod = new javax.swing.JButton();
+        tfExitencias = new javax.swing.JTextField();
+        btnBorrarP = new javax.swing.JButton();
+        btnGuardarP = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
-        txtcdDETALLE = new javax.swing.JTextField();
-        txtdcDATE = new javax.swing.JTextField();
-        jButtonCDsav = new javax.swing.JButton();
-        jButtonDELECD = new javax.swing.JButton();
+        tfDetalle = new javax.swing.JTextField();
+        tfFecha = new javax.swing.JTextField();
+        btnGuardar = new javax.swing.JButton();
+        btnBorrar = new javax.swing.JButton();
         jPanelPANEL = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -66,28 +67,39 @@ public class ProductosT extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jTextPrecio = new javax.swing.JTextField();
         jTextDispo = new javax.swing.JTextField();
-        jButtonSAVE = new javax.swing.JButton();
+        btnGuardarC = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jBDELE = new javax.swing.JButton();
+        btnBorrarC = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel3.setBackground(new java.awt.Color(0, 204, 51));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButtonCOMPRAS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/añadeventa.png"))); // NOI18N
         jButtonCOMPRAS.setText("Compras");
-        getContentPane().add(jButtonCOMPRAS, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
+        jButtonCOMPRAS.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel3.add(jButtonCOMPRAS, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 170, -1));
 
         jButtonCD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/compraDETALLE.png"))); // NOI18N
         jButtonCD.setText("Compra Detalle");
-        getContentPane().add(jButtonCD, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, 60));
+        jButtonCD.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel3.add(jButtonCD, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, 60));
 
         jButtonProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/productosre.png"))); // NOI18N
         jButtonProductos.setText("Productos");
-        getContentPane().add(jButtonProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, -1, -1));
+        jButtonProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel3.add(jButtonProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 170, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/carrito_chico-removebg-preview_2.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 110, 240));
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 110, 240));
+
+        jTabbedPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel9.setText("Codigo");
 
@@ -113,9 +125,11 @@ public class ProductosT extends javax.swing.JFrame {
             jTable2.getColumnModel().getColumn(0).setPreferredWidth(30);
         }
 
-        jBDELETEprod.setText("BORRAR");
+        btnBorrarP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/goma-de-borrar.png"))); // NOI18N
+        btnBorrarP.setText("BORRAR");
 
-        jBSAVEprod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/guardarbred_1.png"))); // NOI18N
+        btnGuardarP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/guardarbred_1.png"))); // NOI18N
+        btnGuardarP.setText("Guardar");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -124,9 +138,7 @@ public class ProductosT extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 678, Short.MAX_VALUE)
-                        .addContainerGap())
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 678, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -135,22 +147,22 @@ public class ProductosT extends javax.swing.JFrame {
                             .addComponent(jLabel9))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtProductoCODIGO)
-                            .addComponent(txtproductoPRODUCTO)
+                            .addComponent(tfCodigo)
+                            .addComponent(tfProducto)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtproductoCANTIDAD, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tfExitencias, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(17, 17, 17)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtproductoPRECIO, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(41, 41, 41)
-                                .addComponent(jBDELETEprod)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jBSAVEprod, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26))))
+                                .addComponent(btnBorrarP)))
+                        .addGap(73, 73, 73)
+                        .addComponent(btnGuardarP)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,35 +172,38 @@ public class ProductosT extends javax.swing.JFrame {
                         .addGap(11, 11, 11)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
-                            .addComponent(txtProductoCODIGO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(11, 11, 11)
-                        .addComponent(jBSAVEprod, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(44, 44, 44)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(44, 44, 44)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel10)
+                                            .addComponent(tfProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(24, 24, 24)
+                                        .addComponent(btnBorrarP)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel10)
-                                    .addComponent(txtproductoPRODUCTO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel11)
+                                        .addComponent(tfExitencias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(tfPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel12)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jBDELETEprod, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(21, 21, 21)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel11)
-                                .addComponent(txtproductoCANTIDAD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txtproductoPRECIO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel12)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnGuardarP, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(15, 15, 15)))
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 29, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Productos", jPanel1);
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel13.setText("Detalle");
@@ -214,16 +229,20 @@ public class ProductosT extends javax.swing.JFrame {
         }
 
         jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 59, 530, 190));
-        jPanel2.add(txtcdDETALLE, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 25, 71, -1));
-        jPanel2.add(txtdcDATE, new org.netbeans.lib.awtextra.AbsoluteConstraints(219, 25, 71, -1));
+        jPanel2.add(tfDetalle, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 25, 71, -1));
+        jPanel2.add(tfFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(219, 25, 71, -1));
 
-        jButtonCDsav.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/guardarbred.png"))); // NOI18N
-        jPanel2.add(jButtonCDsav, new org.netbeans.lib.awtextra.AbsoluteConstraints(139, 261, 38, 41));
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/guardarbred.png"))); // NOI18N
+        btnGuardar.setText("Guardar");
+        jPanel2.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(139, 261, 130, 41));
 
-        jButtonDELECD.setText("BORRAR");
-        jPanel2.add(jButtonDELECD, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 261, 127, 26));
+        btnBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/goma-de-borrar.png"))); // NOI18N
+        btnBorrar.setText("BORRAR");
+        jPanel2.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 261, 127, 40));
 
         jTabbedPane1.addTab("Compra Detalle", jPanel2);
+
+        jPanelPANEL.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setText("Codigo");
 
@@ -253,14 +272,18 @@ public class ProductosT extends javax.swing.JFrame {
 
         jLabel6.setText("Disponible en Stock");
 
-        jButtonSAVE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/guardarbred.png"))); // NOI18N
+        btnGuardarC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/guardarbred.png"))); // NOI18N
+        btnGuardarC.setText("Guardar");
+        btnGuardarC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel7.setText("Total a Pagar");
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel8.setText("$");
 
-        jBDELE.setText("BORRAR");
+        btnBorrarC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/goma-de-borrar.png"))); // NOI18N
+        btnBorrarC.setText("BORRAR");
+        btnBorrarC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout jPanelPANELLayout = new javax.swing.GroupLayout(jPanelPANEL);
         jPanelPANEL.setLayout(jPanelPANELLayout);
@@ -292,15 +315,15 @@ public class ProductosT extends javax.swing.JFrame {
                             .addComponent(jTextDispo, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jBDELE)
-                        .addGap(0, 70, Short.MAX_VALUE))
+                        .addComponent(btnBorrarC)
+                        .addGap(0, 34, Short.MAX_VALUE))
                     .addGroup(jPanelPANELLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonSAVE)))
+                        .addComponent(btnGuardarC)))
                 .addContainerGap())
         );
         jPanelPANELLayout.setVerticalGroup(
@@ -324,7 +347,7 @@ public class ProductosT extends javax.swing.JFrame {
                             .addComponent(jTextDispo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPANELLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jBDELE)))
+                        .addComponent(btnBorrarC)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
@@ -332,13 +355,54 @@ public class ProductosT extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel7)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButtonSAVE, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(btnGuardarC, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(27, 27, 27))
         );
 
         jTabbedPane1.addTab("Compras", jPanelPANEL);
 
-        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, 690, 360));
+        jPanel3.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, 690, 360));
+
+        jPanel5.setBackground(new java.awt.Color(0, 102, 102));
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 220, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 500, Short.MAX_VALUE)
+        );
+
+        jPanel3.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 500));
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 720, Short.MAX_VALUE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 500, Short.MAX_VALUE)
+        );
+
+        jPanel3.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 720, 500));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -371,23 +435,18 @@ public class ProductosT extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ProductosT().setVisible(true);
-            }
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBDELE;
-    private javax.swing.JButton jBDELETEprod;
-    private javax.swing.JButton jBSAVEprod;
+    private javax.swing.JButton btnBorrar;
+    private javax.swing.JButton btnBorrarC;
+    private javax.swing.JButton btnBorrarP;
+    private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnGuardarC;
+    private javax.swing.JButton btnGuardarP;
     private javax.swing.JButton jButtonCD;
-    private javax.swing.JButton jButtonCDsav;
     private javax.swing.JButton jButtonCOMPRAS;
-    private javax.swing.JButton jButtonDELECD;
     private javax.swing.JButton jButtonProductos;
-    private javax.swing.JButton jButtonSAVE;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -404,6 +463,9 @@ public class ProductosT extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanelPANEL;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -417,11 +479,11 @@ public class ProductosT extends javax.swing.JFrame {
     private javax.swing.JTextField jTextDispo;
     private javax.swing.JTextField jTextPrecio;
     private javax.swing.JTextField jTextProducto;
-    private javax.swing.JTextField txtProductoCODIGO;
-    private javax.swing.JTextField txtcdDETALLE;
-    private javax.swing.JTextField txtdcDATE;
-    private javax.swing.JTextField txtproductoCANTIDAD;
-    private javax.swing.JTextField txtproductoPRECIO;
-    private javax.swing.JTextField txtproductoPRODUCTO;
+    private javax.swing.JTextField tfCodigo;
+    private javax.swing.JTextField tfDetalle;
+    private javax.swing.JTextField tfExitencias;
+    private javax.swing.JTextField tfFecha;
+    private javax.swing.JTextField tfPrecio;
+    private javax.swing.JTextField tfProducto;
     // End of variables declaration//GEN-END:variables
 }

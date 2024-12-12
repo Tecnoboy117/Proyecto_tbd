@@ -8,7 +8,9 @@ import vistas.Login;
 import vistas.AccesoR;
 import conexion.Conexion;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import modelos.*;
+import vistas.ProductosT;
 
 /**
  *
@@ -33,22 +35,17 @@ public class ControladorUsuarios {
     
     public boolean acceso() throws SQLException{
         modeloU.setUser(vistaL.getJuser());
-        modeloU.setPassword(vistaL.getJpass());
-        if(Usuarios.acceso(con.getConexion(), modeloU)){
-            System.out.println("Se ingreso correctamente");
-        }else{
-            System.out.println("No se pudo ingresar");
-        }
-        return false;
+        modeloU.setPassword(vistaL.getJpass());     
+        return Usuarios.acceso(con.getConexion(), modeloU);
     }
     
     public boolean registro() throws SQLException{
         modeloU.setUser(vistaR.getjUsuario());
         modeloU.setPassword(vistaR.getjPasswordCrea());
         if(Usuarios.agregarUsuario(con.getConexion(), modeloU)){
-            System.out.println("Se registro usuario");
+            JOptionPane.showMessageDialog(null, "Se registro usuario", "Registro autorizado", 1);
         }else{
-            System.out.println("No se registro usuario");
+            JOptionPane.showMessageDialog(null, "No se registro usuario", "Registro denegado", 1);
         }
         return false;
     }

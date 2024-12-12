@@ -5,6 +5,7 @@ import Controladores.ControladorUsuarios;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import modelos.Usuarios;
@@ -215,9 +216,20 @@ public class Login extends javax.swing.JFrame {
     private void jingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jingMouseClicked
         try {
             // TODO add your handling code here:
-            controlUsu.acceso();
+            boolean bandera = this.controlUsu.acceso();
+            if(bandera){
+                
+                java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new ProductosT().setVisible(true);
+                }
+            });
+            }else{
+                JOptionPane.showMessageDialog(null, "El usuario no se pudo ingresar", "Acceso denegado", 1);
+            }
+            dispose();
         } catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AccesoR.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jingMouseClicked
 
