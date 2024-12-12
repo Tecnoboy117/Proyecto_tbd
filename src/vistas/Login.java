@@ -15,7 +15,7 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         Usuarios modeloUsu = new Usuarios();
-        controlUsu = new ControladorUsuarios(modeloUsu,this);
+        controlUsu = new ControladorUsuarios(this);
     }
 
     public String getJpass() {
@@ -218,16 +218,12 @@ public class Login extends javax.swing.JFrame {
             // TODO add your handling code here:
             boolean bandera = this.controlUsu.acceso();
             if(bandera){
-                
-                java.awt.EventQueue.invokeLater(new Runnable() {
-                public void run() {
-                    new ProductosT().setVisible(true);
-                }
-            });
+                ProductosT vistaP = new ProductosT();
+                vistaP.setVisible(true);
+            dispose();
             }else{
                 JOptionPane.showMessageDialog(null, "El usuario no se pudo ingresar", "Acceso denegado", 1);
             }
-            dispose();
         } catch (SQLException ex) {
             Logger.getLogger(AccesoR.class.getName()).log(Level.SEVERE, null, ex);
         }

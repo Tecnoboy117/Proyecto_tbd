@@ -15,25 +15,35 @@ public class Producto {
     private String nombre;
     private String marca;
     private int existencias;
-    private double preciov;
-    private double precioc;
-    private double preciovo;
+    private double preciosu;
+    private double preciosc;
+    private double preciosvo;
     private int estado;
-    private int oferta;
+    
+    
+    public Producto() {
+        this.cvproducto = "";
+        this.nombre = "";
+        this.marca = "";
+        this.existencias = 0;
+        this.preciosu = 0.0;
+        this.preciosc = 0.0;
+        this.preciosvo = 0.0;
+        this.estado = 0;
+    }
 
     // Constructor
-    public Producto(String cvproducto, String nombre, String marca, int existencias, double preciov, double precioc, double preciovo, int estado, int oferta) {
+    public Producto(String cvproducto, String nombre, String marca, int existencias, double preciosu, double precioc, double preciovo, int estado) {
         this.cvproducto = cvproducto;
         this.nombre = nombre;
         this.marca = marca;
         this.existencias = existencias;
-        this.preciov = preciov;
-        this.precioc = precioc;
-        this.preciovo = preciovo;
+        this.preciosu = preciosu;
+        this.preciosc = precioc;
+        this.preciosvo = preciovo;
         this.estado = estado;
-        this.oferta = oferta;
     }
-
+    
     // Getters y Setters
     public String getCvproducto() {
         return cvproducto;
@@ -67,28 +77,28 @@ public class Producto {
         this.existencias = existencias;
     }
 
-    public double getPreciov() {
-        return preciov;
+    public double getPreciosu() {
+        return preciosu;
     }
 
-    public void setPreciov(double preciov) {
-        this.preciov = preciov;
+    public void setPreciosu(double preciosu) {
+        this.preciosu = preciosu;
     }
 
-    public double getPrecioc() {
-        return precioc;
+    public double getPreciosc() {
+        return preciosc;
     }
 
-    public void setPrecioc(double precioc) {
-        this.precioc = precioc;
+    public void setPreciosc(double preciosc) {
+        this.preciosc = preciosc;
     }
 
-    public double getPreciovo() {
-        return preciovo;
+    public double getPreciosvo() {
+        return preciosvo;
     }
 
-    public void setPreciovo(double preciovo) {
-        this.preciovo = preciovo;
+    public void setPreciosvo(double preciosvo) {
+        this.preciosvo = preciosvo;
     }
 
     public int getEstado() {
@@ -99,25 +109,17 @@ public class Producto {
         this.estado = estado;
     }
 
-    public int getOferta() {
-        return oferta;
-    }
-
-    public void setOferta(int oferta) {
-        this.oferta = oferta;
-    }
     public static boolean agregarProducto(Connection conn, Producto producto) throws SQLException {
-        String sql = "INSERT INTO producto (cvproducto, nombre, marca, existencias, preciov, precioc, preciovo, estado, oferta) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO productos (cvproducto, nombre, marca, existencias, preciosu, preciosc, preciosvo, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, producto.cvproducto);
             stmt.setString(2, producto.nombre);
             stmt.setString(3, producto.marca);
             stmt.setInt(4, producto.existencias);
-            stmt.setDouble(5, producto.preciov);
-            stmt.setDouble(6, producto.precioc);
-            stmt.setDouble(7, producto.preciovo);
+            stmt.setDouble(5, producto.preciosu);
+            stmt.setDouble(6, producto.preciosc);
+            stmt.setDouble(7, producto.preciosvo);
             stmt.setInt(8, producto.estado);
-            stmt.setInt(9, producto.oferta);
             int row = stmt.executeUpdate();
             return row > 0;
         }
@@ -125,7 +127,7 @@ public class Producto {
 
     // Método para eliminar un producto por clave
     public static boolean eliminarProducto(Connection conn, String cvproducto) throws SQLException {
-        String sql = "DELETE FROM producto WHERE cvproducto = ?";
+        String sql = "DELETE FROM productos WHERE cvproducto = ?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, cvproducto);
             int row = stmt.executeUpdate();
@@ -135,7 +137,7 @@ public class Producto {
 
     // Método para listar todos los productos
     public static List<Producto> listarProductos(Connection conn) throws SQLException {
-        String sql = "SELECT * FROM producto";
+        String sql = "SELECT * FROM productos";
         List<Producto> productos = new ArrayList<>();
         try (PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
@@ -145,34 +147,33 @@ public class Producto {
                         rs.getString("nombre"),
                         rs.getString("marca"),
                         rs.getInt("existencias"),
-                        rs.getDouble("preciov"),
-                        rs.getDouble("precioc"),
-                        rs.getDouble("preciovo"),
-                        rs.getInt("estado"),
-                        rs.getInt("oferta")
+                        rs.getDouble("preciosu"),
+                        rs.getDouble("preciosc"),
+                        rs.getDouble("preciosvo"),
+                        rs.getInt("estado")
                 ));
             }
         }
         return productos;
 }
     public static boolean modificarProducto(Connection conn, Producto producto) throws SQLException {
-    String sql = "UPDATE producto SET nombre = ?, marca = ?, existencias = ?, preciov = ?, precioc = ?, preciovo = ?, estado = ?, oferta = ? WHERE cvproducto = ?";
+    String sql = "UPDATE productos SET nombre = ?, marca = ?, existencias = ?, preciosu = ?, preciosc = ?, preciosvo = ?, estado = ? WHERE cvproducto = ?";
     try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+        
         stmt.setString(1, producto.nombre);
         stmt.setString(2, producto.marca);
         stmt.setInt(3, producto.existencias);
-        stmt.setDouble(4, producto.preciov);
-        stmt.setDouble(5, producto.precioc);
-        stmt.setDouble(6, producto.preciovo);
+        stmt.setDouble(4, producto.preciosu);
+        stmt.setDouble(5, producto.preciosc);
+        stmt.setDouble(6, producto.preciosvo);
         stmt.setInt(7, producto.estado);
-        stmt.setInt(8, producto.oferta);
-        stmt.setString(9, producto.cvproducto);
+        stmt.setString(8, producto.cvproducto);
         int row = stmt.executeUpdate();
         return row > 0;
     }
 }
     public static Producto buscarProducto(Connection conn, String cvproducto) throws SQLException {
-    String sql = "SELECT * FROM producto WHERE cvproducto = ?";
+    String sql = "SELECT * FROM productos WHERE cvproducto = ?";
     try (PreparedStatement stmt = conn.prepareStatement(sql)) {
         stmt.setString(1, cvproducto);
         try (ResultSet rs = stmt.executeQuery()) {
@@ -182,11 +183,10 @@ public class Producto {
                         rs.getString("nombre"),
                         rs.getString("marca"),
                         rs.getInt("existencias"),
-                        rs.getDouble("preciov"),
-                        rs.getDouble("precioc"),
-                        rs.getDouble("preciovo"),
-                        rs.getInt("estado"),
-                        rs.getInt("oferta")
+                        rs.getDouble("preciosu"),
+                        rs.getDouble("preciosc"),
+                        rs.getDouble("preciosvo"),
+                        rs.getInt("estado")
                 );
             }
         }
@@ -196,7 +196,7 @@ public class Producto {
 
     @Override
     public String toString() {
-        return "Producto{" + "cvproducto=" + cvproducto + ", nombre=" + nombre + ", marca=" + marca + ", existencias=" + existencias + ", preciov=" + preciov + ", precioc=" + precioc + ", preciovo=" + preciovo + ", estado=" + estado + ", oferta=" + oferta + '}';
+        return "Producto{" + "cvproducto=" + cvproducto + ", nombre=" + nombre + ", marca=" + marca + ", existencias=" + existencias + ", preciosu=" + preciosu + ", preciosc=" + preciosc + ", preciosvo=" + preciosvo + ", estado=" + estado + ')';
     }
 }
 

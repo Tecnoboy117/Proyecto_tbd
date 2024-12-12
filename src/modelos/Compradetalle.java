@@ -16,6 +16,13 @@ public class Compradetalle {
     private double precioc;
     private String cvproducto;
     private int cvcompra;
+    
+    public Compradetalle() {
+        this.cantidad = 0;
+        this.precioc = 0.0;
+        this.cvproducto = "";
+        this.cvcompra = 0;
+    }
 
     // Constructor
     public Compradetalle(int cantidad, double precioc, String cvproducto, int cvcompra) {

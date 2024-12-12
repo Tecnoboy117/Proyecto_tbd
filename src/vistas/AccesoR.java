@@ -17,7 +17,7 @@ public class AccesoR extends javax.swing.JFrame {
     public AccesoR() {
         initComponents();
         Usuarios modeloUsu = new Usuarios();
-        controlUsu = new ControladorUsuarios(modeloUsu,this);
+        controlUsu = new ControladorUsuarios(this);
     }
 
     public String getjPasswordCrea() {

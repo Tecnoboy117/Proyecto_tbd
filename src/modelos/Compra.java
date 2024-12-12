@@ -13,15 +13,23 @@ import java.util.List;
  * @author josea
  */
 public class Compra{
-private int cvcompra;
-    private Date fecha;
+    private int cvcompra;
+    private String fecha;
     private double total;
     private double subtotal;
     private double iva;
     private int estado;
-
+    
+    public Compra() {
+        this.cvcompra = 0;
+        this.fecha = "";
+        this.total = 0.0;
+        this.subtotal = 0.0;
+        this.iva = 0.0;
+        this.estado = 0;
+    }
     // Constructor
-    public Compra(int cvcompra, Date fecha, double total, double subtotal, double iva, int estado) {
+    public Compra(int cvcompra, String fecha, double total, double subtotal, double iva, int estado) {
         this.cvcompra = cvcompra;
         this.fecha = fecha;
         this.total = total;
@@ -39,11 +47,11 @@ private int cvcompra;
         this.cvcompra = cvcompra;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
@@ -82,7 +90,7 @@ private int cvcompra;
         String sql = "INSERT INTO compra (cvcompra, fecha, total, subtotal, iva, estado) VALUES (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, compra.cvcompra);
-            stmt.setDate(2, new java.sql.Date(compra.fecha.getTime()));
+            stmt.setString(2, compra.fecha);
             stmt.setDouble(3, compra.total);
             stmt.setDouble(4, compra.subtotal);
             stmt.setDouble(5, compra.iva);
@@ -111,7 +119,7 @@ private int cvcompra;
             while (rs.next()) {
                 compras.add(new Compra(
                         rs.getInt("cvcompra"),
-                        rs.getDate("fecha"),
+                        rs.getString("fecha"),
                         rs.getDouble("total"),
                         rs.getDouble("subtotal"),
                         rs.getDouble("iva"),
@@ -124,7 +132,7 @@ private int cvcompra;
     public static boolean modificarCompra(Connection conn, Compra compra) throws SQLException {
     String sql = "UPDATE compra SET fecha = ?, total = ?, subtotal = ?, iva = ?, estado = ? WHERE cvcompra = ?";
     try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-        stmt.setDate(1, new java.sql.Date(compra.fecha.getTime()));
+        stmt.setString(1, compra.fecha);
         stmt.setDouble(2, compra.total);
         stmt.setDouble(3, compra.subtotal);
         stmt.setDouble(4, compra.iva);
@@ -142,7 +150,7 @@ private int cvcompra;
             if (rs.next()) {
                 return new Compra(
                         rs.getInt("cvcompra"),
-                        rs.getDate("fecha"),
+                        rs.getString("fecha"),
                         rs.getDouble("total"),
                         rs.getDouble("subtotal"),
                         rs.getDouble("iva"),

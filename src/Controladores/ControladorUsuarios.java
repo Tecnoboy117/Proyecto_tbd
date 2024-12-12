@@ -18,30 +18,31 @@ import vistas.ProductosT;
  */
 public class ControladorUsuarios {
 
-    private Usuarios modeloU;
+
     private Login vistaL;
     private Conexion con;
     private AccesoR vistaR;
     // Contructor para la vista de login
-    public ControladorUsuarios(Usuarios modeloU, Login vistaL) {
-        this.modeloU = modeloU;
+    public ControladorUsuarios(Login vistaL) {
         this.vistaL = vistaL;
     }
     // Contructor para la vista de Reguistros
-    public ControladorUsuarios(Usuarios modeloU, AccesoR vistaR) {
-        this.modeloU = modeloU;
+    public ControladorUsuarios(AccesoR vistaR) {
         this.vistaR = vistaR;
     }
     
     public boolean acceso() throws SQLException{
+        Usuarios modeloU = new Usuarios();
         modeloU.setUser(vistaL.getJuser());
-        modeloU.setPassword(vistaL.getJpass());     
+        modeloU.setPassword(vistaL.getJpass());
         return Usuarios.acceso(con.getConexion(), modeloU);
     }
     
     public boolean registro() throws SQLException{
+        Usuarios modeloU = new Usuarios();
         modeloU.setUser(vistaR.getjUsuario());
-        modeloU.setPassword(vistaR.getjPasswordCrea());
+        String passwordE = modeloU.encriptarPassword(vistaR.getjPasswordCrea());
+        modeloU.setPassword(passwordE);
         if(Usuarios.agregarUsuario(con.getConexion(), modeloU)){
             JOptionPane.showMessageDialog(null, "Se registro usuario", "Registro autorizado", 1);
         }else{

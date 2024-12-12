@@ -4,10 +4,18 @@
  */
 package Controladores;
 
+import conexion.Conexion;
+import vistas.ProductosT;
+
 /**
  *
  * @author danyv
  */
 public class ControladorCompra {
-    
+    private ProductosT sistema;
+    private Conexion con;
+
+    public ControladorCompra(ProductosT sistema) {
+        this.sistema = sistema;
+    }
 }
