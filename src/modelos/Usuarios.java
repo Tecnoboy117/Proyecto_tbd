@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package modelos;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +53,23 @@ public class Usuarios {
     public void setPassword(String password) {
         this.password = password;
     }
+    
+    //Este es el metodo para encriptar el sha 256
+    public static String encriptarPassword(String password) {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : hash) {
+                String hex = Integer.toHexString(0xff & b);
+                if (hex.length() == 1) hexString.append('0');
+                hexString.append(hex);
+            }
+            return hexString.toString();
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("Error al encriptar la contraseña: " + e.getMessage());
+        }
+    }
     public static boolean agregarUsuario(Connection conn, Usuarios usuario) throws SQLException {
         String sql = "INSERT INTO usuarios (usuario, password) VALUES (?, ?)";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -85,14 +105,14 @@ public class Usuarios {
         }
         return usuarios;
     }
-    // Este lo hice para ya hacer el controlador de los usuarios
-    public static boolean acceso(Connection conn, Usuarios usuario) throws SQLException{
-        System.out.println("Usuario: "+usuario.user+" Contraseña: "+usuario.password);
+    //este es el metodo de acceso modificado para encriptar
+    public static boolean acceso(Connection conn, Usuarios usuario) throws SQLException {
+        System.out.println("Usuario: " + usuario.user + " Contraseña (encriptada): " + encriptarPassword(usuario.password));
         String sql = "SELECT * FROM usuarios WHERE usuario = ? AND password = ?";
-        try (PreparedStatement pstmt = conn.prepareStatement(sql)){
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, usuario.user);
-            pstmt.setString(2, usuario.password);
-            try (ResultSet rs = pstmt.executeQuery()){
+            pstmt.setString(2, encriptarPassword(usuario.password)); // Comparar con contraseña encriptada
+            try (ResultSet rs = pstmt.executeQuery()) {
                 return rs.next();
             }
         }
