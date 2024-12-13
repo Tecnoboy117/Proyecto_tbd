@@ -54,41 +54,19 @@ public class Login extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 500));
-        jPanel1.setLayout(null);
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Right.setBackground(new java.awt.Color(0, 102, 102));
         Right.setPreferredSize(new java.awt.Dimension(400, 500));
+        Right.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        Right.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 136, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Showcard Gothic", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Bienvenido");
+        Right.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(118, 154, -1, -1));
 
-        javax.swing.GroupLayout RightLayout = new javax.swing.GroupLayout(Right);
-        Right.setLayout(RightLayout);
-        RightLayout.setHorizontalGroup(
-            RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(RightLayout.createSequentialGroup()
-                .addGroup(RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(RightLayout.createSequentialGroup()
-                        .addGap(145, 145, 145)
-                        .addComponent(jLabel5))
-                    .addGroup(RightLayout.createSequentialGroup()
-                        .addGap(118, 118, 118)
-                        .addComponent(jLabel6)))
-                .addContainerGap(130, Short.MAX_VALUE))
-        );
-        RightLayout.setVerticalGroup(
-            RightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(RightLayout.createSequentialGroup()
-                .addGap(136, 136, 136)
-                .addComponent(jLabel5)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel6)
-                .addContainerGap(315, Short.MAX_VALUE))
-        );
-
-        jPanel1.add(Right);
-        Right.setBounds(0, 0, 400, 500);
+        jPanel1.add(Right, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         Left.setBackground(new java.awt.Color(255, 255, 255));
         Left.setMinimumSize(new java.awt.Dimension(400, 500));
@@ -179,8 +157,7 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap(77, Short.MAX_VALUE))
         );
 
-        jPanel1.add(Left);
-        Left.setBounds(400, 0, 400, 500);
+        jPanel1.add(Left, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

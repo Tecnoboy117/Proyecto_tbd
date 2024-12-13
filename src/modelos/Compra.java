@@ -6,6 +6,7 @@ package modelos;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -143,23 +144,32 @@ public class Compra{
     }
 }
     public static Compra buscarCompra(Connection conn, int cvcompra) throws SQLException {
-    String sql = "SELECT * FROM compra WHERE cvcompra = ?";
-    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-        stmt.setInt(1, cvcompra);
-        try (ResultSet rs = stmt.executeQuery()) {
-            if (rs.next()) {
-                return new Compra(
-                        rs.getInt("cvcompra"),
-                        rs.getString("fecha"),
-                        rs.getDouble("total"),
-                        rs.getDouble("subtotal"),
-                        rs.getDouble("iva"),
-                        rs.getInt("estado")
-                );
+        String sql = "SELECT * FROM compra WHERE cvcompra = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, cvcompra);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return new Compra(
+                            rs.getInt("cvcompra"),
+                            rs.getString("fecha"),
+                            rs.getDouble("total"),
+                            rs.getDouble("subtotal"),
+                            rs.getDouble("iva"),
+                            rs.getInt("estado")
+                    );
+                }else{
+                    return null;
+                }
             }
         }
     }
-    return null;
+    public static String hacerFecha(){
+        Calendar tiempo = Calendar.getInstance();
+        int day = tiempo.get(Calendar.DAY_OF_MONTH);
+        int month = tiempo.get(Calendar.MONTH);
+        int year = tiempo.get(Calendar.YEAR);
+        String fechaA = year+"-"+month+"-"+day;
+        return fechaA;
     }
     @Override
     public String toString() {

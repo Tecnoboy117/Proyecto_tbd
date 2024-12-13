@@ -29,7 +29,7 @@ public class Producto {
         this.preciosu = 0.0;
         this.preciosc = 0.0;
         this.preciosvo = 0.0;
-        this.estado = 0;
+        this.estado = 2;
     }
 
     // Constructor
@@ -159,7 +159,6 @@ public class Producto {
     public static boolean modificarProducto(Connection conn, Producto producto) throws SQLException {
     String sql = "UPDATE productos SET nombre = ?, marca = ?, existencias = ?, preciosu = ?, preciosc = ?, preciosvo = ?, estado = ? WHERE cvproducto = ?";
     try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-        
         stmt.setString(1, producto.nombre);
         stmt.setString(2, producto.marca);
         stmt.setInt(3, producto.existencias);
@@ -173,28 +172,27 @@ public class Producto {
     }
 }
     public static Producto buscarProducto(Connection conn, String cvproducto) throws SQLException {
-    String sql = "SELECT * FROM productos WHERE cvproducto = ?";
-    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-        stmt.setString(1, cvproducto);
-        try (ResultSet rs = stmt.executeQuery()) {
-            if (rs.next()) {
-                System.out.println("hola");
-                return new Producto(
-                        rs.getString("cvproducto"),
-                        rs.getString("nombre"),
-                        rs.getString("marca"),
-                        rs.getInt("existencias"),
-                        rs.getDouble("preciosu"),
-                        rs.getDouble("preciosc"),
-                        rs.getDouble("preciosvo"),
-                        rs.getInt("estado")
-                );
-            }else{
-                return null;
+        String sql = "SELECT * FROM productos WHERE cvproducto = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, cvproducto);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return new Producto(
+                            rs.getString("cvproducto"),
+                            rs.getString("nombre"),
+                            rs.getString("marca"),
+                            rs.getInt("existencias"),
+                            rs.getDouble("preciosu"),
+                            rs.getDouble("preciosc"),
+                            rs.getDouble("preciosvo"),
+                            rs.getInt("estado")
+                    );
+                }else{
+                    return null;
+                }
             }
         }
     }
-}
 
     @Override
     public String toString() {

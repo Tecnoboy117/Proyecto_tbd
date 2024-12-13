@@ -12,27 +12,38 @@ import java.util.List;
  * @author josea
  */
 public class Compradetalle {
-   private int cantidad;
-    private double precioc;
+    private int id;
+    private int cantidad;
+    private double precios;
     private String cvproducto;
     private int cvcompra;
     
     public Compradetalle() {
+        this.id = 0;
         this.cantidad = 0;
-        this.precioc = 0.0;
+        this.precios = 0.0;
         this.cvproducto = "";
         this.cvcompra = 0;
     }
 
     // Constructor
-    public Compradetalle(int cantidad, double precioc, String cvproducto, int cvcompra) {
+    public Compradetalle(int id, int cantidad, double precioc, String cvproducto, int cvcompra) {
+        this.id = id;
         this.cantidad = cantidad;
-        this.precioc = precioc;
+        this.precios = precioc;
         this.cvproducto = cvproducto;
         this.cvcompra = cvcompra;
     }
 
     // Getters y Setters
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public int getCantidad() {
         return cantidad;
     }
@@ -42,11 +53,11 @@ public class Compradetalle {
     }
 
     public double getPrecioc() {
-        return precioc;
+        return precios;
     }
 
-    public void setPrecioc(double precioc) {
-        this.precioc = precioc;
+    public void setPrecioc(double precios) {
+        this.precios = precios;
     }
 
     public String getCvproducto() {
@@ -64,23 +75,24 @@ public class Compradetalle {
     public void setCvcompra(int cvcompra) {
         this.cvcompra = cvcompra;
     } 
-    public static void agregarCompradetalle(Connection conn, Compradetalle detalle) throws SQLException {
-        String sql = "INSERT INTO detallecompra (cantidad, precioc, cvproducto, cvcompra) VALUES (?, ?, ?, ?)";
+    public static boolean agregarCompradetalle(Connection conn, Compradetalle detalle) throws SQLException {
+        String sql = "INSERT INTO compradetalle (cantidad, precios, cvproducto, cvcompra) VALUES (?, ?, ?, ?)";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, detalle.cantidad);
-            stmt.setDouble(2, detalle.precioc);
+            stmt.setDouble(2, detalle.precios);
             stmt.setString(3, detalle.cvproducto);
             stmt.setInt(4, detalle.cvcompra);
-            stmt.executeUpdate();
-            System.out.println("Detalle agregado: " + detalle);
+            System.out.println("Cantidad: "+detalle.cantidad+" Precio: "+detalle.precios+" cvproducto: "+detalle.cvproducto+" cvcompra:"+detalle.cvcompra);
+            int row = stmt.executeUpdate();
+            return row > 0;
         }
     }
 
     // Método para eliminar un detalle de compra por ID de compra
-    public static boolean eliminarDetalleCompra(Connection conn, int cvcompra) throws SQLException {
-        String sql = "DELETE FROM detallecompra WHERE cvcompra = ?";
+    public static boolean eliminarDetalleCompra(Connection conn, int id) throws SQLException {
+        String sql = "DELETE FROM compradetalle WHERE id = ?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, cvcompra);
+            stmt.setInt(1, id);
             int row = stmt.executeUpdate();
             return row > 0;
         }
@@ -88,14 +100,15 @@ public class Compradetalle {
 
     // Método para listar todos los detalles de compra
     public static List<Compradetalle> listarCompradetalle(Connection conn) throws SQLException {
-        String sql = "SELECT * FROM detallecompra";
+        String sql = "SELECT * FROM compradetalle";
         List<Compradetalle> detalles = new ArrayList<>();
         try (PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
                 detalles.add(new Compradetalle(
+                        rs.getInt("id"),
                         rs.getInt("cantidad"),
-                        rs.getDouble("precioc"),
+                        rs.getDouble("precios"),
                         rs.getString("cvproducto"),
                         rs.getInt("cvcompra")
                 ));
@@ -104,40 +117,41 @@ public class Compradetalle {
         return detalles;
     }
     public static boolean modificarCompradetalle(Connection conn, Compradetalle detalle) throws SQLException {
-    String sql = "UPDATE detallecompra SET cantidad = ?, precioc = ? WHERE cvcompra = ? AND cvproducto = ?";
+    String sql = "UPDATE compradetalle SET cantidad = ?, precios = ? WHERE cvcompra = ? AND cvproducto = ?";
     try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-        stmt.setInt(1, detalle.cantidad);
-        stmt.setDouble(2, detalle.precioc);
-        stmt.setInt(3, detalle.cvcompra);
-        stmt.setString(4, detalle.cvproducto);
-        int row = stmt.executeUpdate();
-        return row > 0;
+            stmt.setInt(1, detalle.cantidad);
+            stmt.setDouble(2, detalle.precios);
+            stmt.setInt(3, detalle.cvcompra);
+            stmt.setString(4, detalle.cvproducto);
+            int row = stmt.executeUpdate();
+            return row > 0;
+        }
     }
-}
 
 // Método para buscar un detalle de compra por ID de compra
-public static List<Compradetalle> buscarCompradetalle(Connection conn, int cvcompra) throws SQLException {
-    String sql = "SELECT * FROM detallecompra WHERE cvcompra = ?";
-    List<Compradetalle> detalles = new ArrayList<>();
+    public static Compradetalle buscarCompradetalle(Connection conn, int id) throws SQLException {
+    String sql = "SELECT * FROM compradetalle";
     try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-        stmt.setInt(1, cvcompra);
         try (ResultSet rs = stmt.executeQuery()) {
-            while (rs.next()) {
-                detalles.add(new Compradetalle(
+            if (rs.next()) {
+                return new Compradetalle(
+                        rs.getInt("id"),
                         rs.getInt("cantidad"),
                         rs.getDouble("precioc"),
                         rs.getString("cvproducto"),
                         rs.getInt("cvcompra")
-                ));
+                );
+                
+                }else{
+                return null;
+            }
             }
         }
+        
     }
-    return detalles;
-}
 
     @Override
     public String toString() {
-        return "Compradetalle{" + "cantidad=" + cantidad + ", precioc=" + precioc + ", cvproducto=" + cvproducto + ", cvcompra=" + cvcompra + '}';
+        return "Compradetalle{" + "cantidad=" + cantidad + ", precioc=" + precios + ", cvproducto=" + cvproducto + ", cvcompra=" + cvcompra + '}';
     }
-    
 }

@@ -1,6 +1,10 @@
 
 package vistas;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class LoginAC {
 
 
@@ -8,7 +12,11 @@ public class LoginAC {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    new ProductosT().setVisible(true);
+                    try {
+                        new ProductosT().setVisible(true);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(LoginAC.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             });
 
