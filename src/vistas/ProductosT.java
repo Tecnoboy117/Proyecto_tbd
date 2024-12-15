@@ -31,7 +31,7 @@ public class ProductosT extends javax.swing.JFrame {
         actualizarTablaP();
         actualizarTablaC();
         actualizarTablaDC();
-        System.out.println(":)");
+        System.out.println(":))))");
     }
 
     public JTextField getTfMarca() {

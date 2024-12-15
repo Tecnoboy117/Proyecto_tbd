@@ -24,7 +24,7 @@ public class ControladorCompra {
     
     public boolean registrarCompra() throws SQLException{
         Compra modeloC = new Compra();
-        int t = Integer.parseInt(sistema.getTfTotalC().getText());
+        double t = Double.parseDouble(sistema.getTfTotalC().getText());
         double i = t *.16;
         modeloC.setFecha(Compra.hacerFecha());
         modeloC.setTotal(t);
@@ -36,7 +36,7 @@ public class ControladorCompra {
     
     public boolean actualizarCompra() throws SQLException{
         Compra modeloC = new Compra();
-        double t = Integer.parseInt((String) sistema.getTablaC().getValueAt(sistema.getTablaC().getSelectedRow(), 2));
+        double t = Double.parseDouble((String) sistema.getTablaC().getValueAt(sistema.getTablaC().getSelectedRow(), 2));
         double i = t *.16;
         modeloC.setCvcompra(Integer.parseInt((String) sistema.getTablaC().getValueAt(sistema.getTablaC().getSelectedRow(), 0)));
         modeloC.setFecha(String.valueOf(sistema.getTablaC().getValueAt(sistema.getTablaC().getSelectedRow(), 1)));

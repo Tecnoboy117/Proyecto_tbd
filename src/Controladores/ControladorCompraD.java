@@ -27,7 +27,7 @@ public class ControladorCompraD {
         modeloCompraD.setCvcompra(Integer.parseInt(sistema.getTfCvCompraCD().getText()));
         modeloCompraD.setCantidad(Integer.parseInt(sistema.getTfCantidadCD().getText()));
         modeloCompraD.setCvproducto(sistema.getTfProductoCD().getText());
-        modeloCompraD.setPrecioc(Integer.parseInt(sistema.getTfPrecioCD().getText()));
+        modeloCompraD.setPrecioc(Double.parseDouble(sistema.getTfPrecioCD().getText()));
         return Compradetalle.agregarCompradetalle(Conexion.getConexion(), modeloCompraD);
     }
     public boolean actualizarCompraD() throws SQLException{
@@ -35,7 +35,7 @@ public class ControladorCompraD {
         modeloCompraD.setCantidad(Integer.parseInt((String) sistema.getTablaCD().getValueAt(sistema.getTablaCD().getSelectedRow(), 3)));
         modeloCompraD.setCvcompra(Integer.parseInt((String) sistema.getTablaCD().getValueAt(sistema.getTablaCD().getSelectedRow(), 1)));
         modeloCompraD.setCvproducto((String) sistema.getTablaCD().getValueAt(sistema.getTablaCD().getSelectedRow(), 2));
-        modeloCompraD.setPrecioc(Integer.parseInt((String) sistema.getTablaCD().getValueAt(sistema.getTablaCD().getSelectedRow(), 4)));
+        modeloCompraD.setPrecioc(Double.parseDouble((String) sistema.getTablaCD().getValueAt(sistema.getTablaCD().getSelectedRow(), 4)));
         return Compradetalle.modificarCompradetalle(Conexion.getConexion(), modeloCompraD);
     }
     
