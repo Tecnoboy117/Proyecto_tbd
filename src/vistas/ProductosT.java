@@ -31,7 +31,7 @@ public class ProductosT extends javax.swing.JFrame {
         actualizarTablaP();
         actualizarTablaC();
         actualizarTablaDC();
-        System.out.println(":))))");
+        System.out.println(":)");
     }
 
     public JTextField getTfMarca() {
@@ -654,7 +654,7 @@ public class ProductosT extends javax.swing.JFrame {
         int fila = tablaCD.getSelectedRow();
         System.out.println(fila);
         if(fila > -1){
-            System.out.println("La columna elegida es: "+fila+" y el valor de la clave es"+tablaP.getValueAt(fila, 0).toString());
+            System.out.println("La columna elegida es: "+fila+" y el valor de la clave es"+tablaCD.getValueAt(fila, 0).toString());
             try {
                 if(compraDC.borrarCompraD()){
                     JOptionPane.showMessageDialog(null, "Se elimino el registro", "Accion Autorizada", 1);
