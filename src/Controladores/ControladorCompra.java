@@ -56,8 +56,8 @@ public class ControladorCompra {
         return compras;
     }
     
-    public Compra buscar() throws SQLException{
-        Compra c = Compra.buscarCompra(Conexion.getConexion(), Integer.parseInt((String) sistema.getTablaC().getValueAt(sistema.getTablaC().getSelectedRow(), 0)));
+    public Compra buscar(String cv) throws SQLException{
+        Compra c = Compra.buscarCompra(Conexion.getConexion(), Integer.parseInt(cv));
         if(c != null){
             System.out.println("Pase el if de buscar una propiedad de mi objeto es:" +c.getCvcompra());
             return c;

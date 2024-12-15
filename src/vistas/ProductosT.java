@@ -31,7 +31,7 @@ public class ProductosT extends javax.swing.JFrame {
         actualizarTablaP();
         actualizarTablaC();
         actualizarTablaDC();
-        System.out.println(":)");
+        System.out.println(":))");
     }
 
     public JTextField getTfMarca() {
@@ -628,17 +628,23 @@ public class ProductosT extends javax.swing.JFrame {
     private void btnGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseClicked
         // TODO add your handling code here:
         ControladorCompraD compraDC = new ControladorCompraD(this);
+        ControladorProducto productoC = new ControladorProducto(this);
+        ControladorCompra compraC = new ControladorCompra(this);
         if(!this.tfCvCompraCD.getText().equals("") && !this.tfProductoCD.getText().equals("") && !this.tfCantidadCD.getText().equals("") && !this.tfPrecioCD.getText().equals("")){
             try {
                 System.out.println(":(");
-                if(compraDC.registrarCompraD()){
-                    JOptionPane.showMessageDialog(null, "El detalle se registro", "Registro aceptado", 1);
-                    System.out.println(":)");
-                    actualizarTablaP();
-                    actualizarTablaC();
-                    actualizarTablaDC();
+                    if(productoC.buscarProductos(this.tfProductoCD.getText()) != null && productoC.buscarProductos(this.tfCvCompraCD.getText()) != null){
+                        if(compraDC.registrarCompraD()){
+                        JOptionPane.showMessageDialog(null, "El detalle se registro", "Registro aceptado", 1);
+                        System.out.println(":)");
+                        actualizarTablaP();
+                        actualizarTablaC();
+                        actualizarTablaDC();
+                    }else{
+                        JOptionPane.showMessageDialog(null, "El detalle no se registro", "Registro Denegado", 1);
+                    }
                 }else{
-                    JOptionPane.showMessageDialog(null, "El detalle no se registro", "Registro Denegado", 1);
+                        JOptionPane.showMessageDialog(null, "Esa compra o producto no existe", "Accion denegado", 1);
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(ProductosT.class.getName()).log(Level.SEVERE, null, ex);
