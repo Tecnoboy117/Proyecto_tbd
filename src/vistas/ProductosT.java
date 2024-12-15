@@ -651,7 +651,8 @@ public class ProductosT extends javax.swing.JFrame {
     private void btnBorrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBorrarMouseClicked
         // TODO add your handling code here:
         ControladorCompraD compraDC = new ControladorCompraD(this);
-        int fila = tablaP.getSelectedRow();
+        int fila = tablaCD.getSelectedRow();
+        System.out.println(fila);
         if(fila > -1){
             System.out.println("La columna elegida es: "+fila+" y el valor de la clave es"+tablaP.getValueAt(fila, 0).toString());
             try {
