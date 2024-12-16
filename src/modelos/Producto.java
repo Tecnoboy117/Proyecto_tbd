@@ -255,8 +255,9 @@ public class Producto {
         }
         if (bandera==0){
             JOptionPane.showMessageDialog(null, "La transaccion no fue completada", "Transación", 1);
+        }else{
+            JOptionPane.showMessageDialog(null, "La transaccion fue completada", "Transacción", 1);
         }
-        JOptionPane.showMessageDialog(null, "La transaccion fue completada", "Transacción", 1);
     }
 
     @Override
