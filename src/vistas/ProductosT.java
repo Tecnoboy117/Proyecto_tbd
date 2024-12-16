@@ -5,10 +5,12 @@
 package vistas;
 
 import Controladores.*;
+import java.awt.Color;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -31,7 +33,8 @@ public class ProductosT extends javax.swing.JFrame {
         actualizarTablaP();
         actualizarTablaC();
         actualizarTablaDC();
-        System.out.println(":))");
+        actualizarTablaProcutosA();
+        System.out.println(":)");
     }
 
     public JTextField getTfMarca() {
@@ -129,6 +132,46 @@ public class ProductosT extends javax.swing.JFrame {
     public void setTfCantidadCD(JTextField tfCantidadCD) {
         this.tfCantidadCD = tfCantidadCD;
     }
+
+    public JTextField getTfNumProCS() {
+        return tfNumProCS;
+    }
+
+    public void setTfNumProCS(JTextField tfNumProCS) {
+        this.tfNumProCS = tfNumProCS;
+    }
+
+    public JTextField getTfGanaciaP() {
+        return tfGanaciaP;
+    }
+
+    public void setTfGanaciaP(JTextField tfGanaciaP) {
+        this.tfGanaciaP = tfGanaciaP;
+    }
+
+    public JTable getTablaCU() {
+        return tablaCU;
+    }
+
+    public void setTablaCU(JTable tablaCU) {
+        this.tablaCU = tablaCU;
+    }
+
+    public JLabel getPrecioO() {
+        return precioO;
+    }
+
+    public JTable getTablaProcutosA() {
+        return tablaProcutosA;
+    }
+
+    public JTextField getTfCantidadR() {
+        return tfCantidadR;
+    }
+
+    public JLabel getPrecioT() {
+        return precioT;
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -157,6 +200,8 @@ public class ProductosT extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         tfMarca = new javax.swing.JTextField();
         btnActualizarP = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        tfGanaciaP = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -181,6 +226,30 @@ public class ProductosT extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         btnBorrarC = new javax.swing.JButton();
         btnActualizarP2 = new javax.swing.JButton();
+        PanelConsulEsp = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        tfNumProCS = new javax.swing.JTextField();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tablaCs = new javax.swing.JTable();
+        btnBuscarCs = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel16 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tablaCU = new javax.swing.JTable();
+        jLabel17 = new javax.swing.JLabel();
+        precioO = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLabel19 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tablaProcutosA = new javax.swing.JTable();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        tfCantidadR = new javax.swing.JTextField();
+        precioT = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
+        btnVentas = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jButtonCOMPRAS = new javax.swing.JButton();
         jButtonCD = new javax.swing.JButton();
@@ -193,6 +262,7 @@ public class ProductosT extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(0, 204, 51));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jmenu.setBackground(new java.awt.Color(255, 255, 255));
         jmenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -207,7 +277,7 @@ public class ProductosT extends javax.swing.JFrame {
         jLabel11.setText("Existencias");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, -1, -1));
         jPanel1.add(tfCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 11, 251, -1));
-        jPanel1.add(tfPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, 86, -1));
+        jPanel1.add(tfPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, 86, -1));
 
         tfProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -264,7 +334,11 @@ public class ProductosT extends javax.swing.JFrame {
                 btnActualizarPMouseClicked(evt);
             }
         });
-        jPanel1.add(btnActualizarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 320, 120, 40));
+        jPanel1.add(btnActualizarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 340, 120, 40));
+
+        jLabel5.setText("Ganancia");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, -1, -1));
+        jPanel1.add(tfGanaciaP, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, 90, -1));
 
         jmenu.addTab("Productos", jPanel1);
 
@@ -394,7 +468,117 @@ public class ProductosT extends javax.swing.JFrame {
 
         jmenu.addTab("Compras", jPanelPANEL);
 
-        jPanel3.add(jmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, 740, 420));
+        PanelConsulEsp.setBackground(new java.awt.Color(255, 255, 255));
+        PanelConsulEsp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setText("Número de producto:");
+        PanelConsulEsp.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 120, 20));
+        PanelConsulEsp.add(tfNumProCS, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, 100, -1));
+
+        tablaCs.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        tablaCs.setRowSelectionAllowed(false);
+        jScrollPane4.setViewportView(tablaCs);
+
+        PanelConsulEsp.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 710, 50));
+
+        btnBuscarCs.setText("Buscar");
+        btnBuscarCs.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBuscarCsMouseClicked(evt);
+            }
+        });
+        PanelConsulEsp.add(btnBuscarCs, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 30, -1, -1));
+        PanelConsulEsp.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 740, 10));
+
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel16.setText("Obtener el precio de oferta de un producto");
+        PanelConsulEsp.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, -1, -1));
+
+        tablaCU.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        tablaCU.setRowSelectionAllowed(false);
+        jScrollPane5.setViewportView(tablaCU);
+
+        PanelConsulEsp.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 710, 50));
+
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel17.setText("Ultima compra de ese producto");
+        PanelConsulEsp.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, -1, -1));
+
+        precioO.setText("El precio de oferta es: ");
+        PanelConsulEsp.add(precioO, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 260, -1));
+        PanelConsulEsp.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, 110, 10));
+
+        jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel19.setText("Detalle del procuto");
+        PanelConsulEsp.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 160, -1));
+
+        jmenu.addTab("Consultas especiales", PanelConsulEsp);
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tablaProcutosA.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane6.setViewportView(tablaProcutosA);
+
+        jPanel4.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 330, 340));
+
+        jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel20.setText("Ventas");
+        jPanel4.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, -1, -1));
+
+        jLabel21.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel21.setText("Productos almacenados");
+        jPanel4.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, -1, -1));
+
+        jLabel22.setText("Cantidad a retirar:");
+        jPanel4.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, -1, -1));
+        jPanel4.add(tfCantidadR, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, 100, -1));
+
+        precioT.setText("Total: ");
+        jPanel4.add(precioT, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, 140, -1));
+        jPanel4.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 150, 220, 20));
+
+        btnVentas.setText("Vender");
+        btnVentas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVentasMouseClicked(evt);
+            }
+        });
+        jPanel4.add(btnVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 80, -1, -1));
+
+        jmenu.addTab("Vender", jPanel4);
+
+        jPanel3.add(jmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 740, 480));
 
         jPanel5.setBackground(new java.awt.Color(0, 102, 102));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -460,147 +644,47 @@ public class ProductosT extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnGuardarPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarPMouseClicked
-        if(!tfProducto.getText().equals("") && !this.tfCodigo.getText().equals("") && !this.tfExitencias.getText().equals("") && !this.tfMarca.getText().equals("") && !this.tfPrecio.getText().equals("")){
-            ControladorProducto productoC = new ControladorProducto(this);
-            try {
-                // TODO add your handling code here:
-                if(productoC.buscarProductos(this.tfCodigo.getText()) == null){
-                   if(productoC.registrarProductos()){
-                        JOptionPane.showMessageDialog(null, "El producto se registro", "Registro aceptado", 1);
-                        System.out.println("Hola");
-                    }else{
-                        JOptionPane.showMessageDialog(null, "El producto no se registro", "Registro denegado", 1);
-                    } 
-                }else{
-                    JOptionPane.showMessageDialog(null, "El producto Ya existe", "Registro denegado", 1);
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(ProductosT.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            try {
-                actualizarTablaP();
-                actualizarTablaC();
-                actualizarTablaDC();
-            } catch (SQLException ex) {
-                Logger.getLogger(ProductosT.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Hay algún campo vacio aún", "Acceso denegado", 1);
-        }
-    }//GEN-LAST:event_btnGuardarPMouseClicked
-
-    private void tfProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfProductoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfProductoActionPerformed
-
-    private void btnBorrarCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBorrarCMouseClicked
-        // TODO add your handling code here:
-        ControladorCompra compraC = new ControladorCompra(this);
-        int fila = tablaC.getColumnCount();
-        if(fila > -1){
-            try {
-                if(compraC.elmininar()){
-                    JOptionPane.showMessageDialog(null, "Se elimino el registro", "Accion Autorizada", 1);
-                    actualizarTablaP();
-                    actualizarTablaC();
-                    actualizarTablaDC();
-                    System.out.println("Hola");
-                }else{
-                    JOptionPane.showMessageDialog(null, "No se elimino el registro", "Accion Denegada", 1);
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(ProductosT.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }else{
-            JOptionPane.showMessageDialog(null, "No hay ningun registro seleccionado", "Accion denegada", 1);
-        }
-    }//GEN-LAST:event_btnBorrarCMouseClicked
-
-    private void btnBorrarPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBorrarPMouseClicked
-        // TODO add your handling code here:
-        ControladorProducto productoP = new ControladorProducto(this);
-        int fila = tablaP.getSelectedRow();
-        if(fila > -1){
-            System.out.println("La columna elegida es: "+fila+" y el valor de la clave es"+tablaP.getValueAt(fila, 0).toString());
-            try {
-                if(productoP.eliminarProductos()){
-                    JOptionPane.showMessageDialog(null, "Se elimino el registro", "Accion Autorizada", 1);
-                    
-                }else{
-                    JOptionPane.showMessageDialog(null, "No se elimino el registro", "Accion Denegada", 1);
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(ProductosT.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }else{
-            JOptionPane.showMessageDialog(null, "No hay ningun registro seleccionado", "Accion denegada", 1);
-        }
+    private void jButtonCOMPRASMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCOMPRASMouseClicked
         try {
-                actualizarTablaP();
-                actualizarTablaC();
-                actualizarTablaDC();
-            } catch (SQLException ex) {
-                Logger.getLogger(ProductosT.class.getName()).log(Level.SEVERE, null, ex);
-            }
-    }//GEN-LAST:event_btnBorrarPMouseClicked
-
-    private void btnActualizarPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarPMouseClicked
-        // TODO add your handling code here:
-        ControladorProducto productoP = new ControladorProducto(this);
-        int fila = tablaP.getSelectedRow();
-        if(fila > -1){
-            try {
-                System.out.println("Hola");
-                if(productoP.actualizarProducto()){
-                    JOptionPane.showMessageDialog(null, "El registro fue modificado", "Accion aceptada", 1);
-                }else{
-                    JOptionPane.showMessageDialog(null, "El registro no fue modificado", "Accion denegada", 1);
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(ProductosT.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }else{
-            JOptionPane.showMessageDialog(null, "No hay ningun registro seleccionado", "Accion denegada", 1);
-        }
-        try {
+            // TODO add your handling code here:
+            jmenu.setSelectedIndex(2);
             actualizarTablaP();
             actualizarTablaC();
             actualizarTablaDC();
         } catch (SQLException ex) {
             Logger.getLogger(ProductosT.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("Hola");
-    }//GEN-LAST:event_btnActualizarPMouseClicked
+    }//GEN-LAST:event_jButtonCOMPRASMouseClicked
 
-    private void btnGuardarCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarCMouseClicked
-        // TODO add your handling code here:
-        ControladorCompra compraC = new ControladorCompra(this);
-        if(!tfTotalC.getText().equals("")){
-            try {
-            if(compraC.registrarCompra()){
-                JOptionPane.showMessageDialog(null, "La compra se registro", "Registro aceptado", 1);
-                actualizarTablaP();
-                actualizarTablaC();
-                actualizarTablaDC();
-            }else{
-                JOptionPane.showMessageDialog(null, "La compra no se registro", "Registro Denegado", 1);
-            }
+    private void jButtonProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonProductosMouseClicked
+        try {
+            // TODO add your handling code here:
+            jmenu.setSelectedIndex(0);
+            actualizarTablaP();
+            actualizarTablaC();
+            actualizarTablaDC();
         } catch (SQLException ex) {
             Logger.getLogger(ProductosT.class.getName()).log(Level.SEVERE, null, ex);
         }
-        }else{
-            JOptionPane.showMessageDialog(null, "Hay algún campo vacio aún", "Acceso denegado", 1);
+    }//GEN-LAST:event_jButtonProductosMouseClicked
+
+    private void jButtonCDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCDMouseClicked
+        try {
+            // TODO add your handling code here:
+            jmenu.setSelectedIndex(1);
+            actualizarTablaP();
+            actualizarTablaC();
+            actualizarTablaDC();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductosT.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_btnGuardarCMouseClicked
+    }//GEN-LAST:event_jButtonCDMouseClicked
 
     private void btnActualizarP2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarP2MouseClicked
         // TODO add your handling code here:
@@ -625,34 +709,71 @@ public class ProductosT extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnActualizarP2MouseClicked
 
-    private void btnGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseClicked
+    private void btnBorrarCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBorrarCMouseClicked
         // TODO add your handling code here:
-        ControladorCompraD compraDC = new ControladorCompraD(this);
-        ControladorProducto productoC = new ControladorProducto(this);
         ControladorCompra compraC = new ControladorCompra(this);
-        if(!this.tfCvCompraCD.getText().equals("") && !this.tfProductoCD.getText().equals("") && !this.tfCantidadCD.getText().equals("") && !this.tfPrecioCD.getText().equals("")){
+        int fila = tablaC.getColumnCount();
+        if(fila > -1){
             try {
-                System.out.println(":(");
-                    if(productoC.buscarProductos(this.tfProductoCD.getText()) != null && productoC.buscarProductos(this.tfCvCompraCD.getText()) != null){
-                        if(compraDC.registrarCompraD()){
-                        JOptionPane.showMessageDialog(null, "El detalle se registro", "Registro aceptado", 1);
-                        System.out.println(":)");
-                        actualizarTablaP();
-                        actualizarTablaC();
-                        actualizarTablaDC();
-                    }else{
-                        JOptionPane.showMessageDialog(null, "El detalle no se registro", "Registro Denegado", 1);
-                    }
+                if(compraC.elmininar()){
+                    JOptionPane.showMessageDialog(null, "Se elimino el registro", "Accion Autorizada", 1);
+                    actualizarTablaP();
+                    actualizarTablaC();
+                    actualizarTablaDC();
+                    System.out.println("Hola");
                 }else{
-                        JOptionPane.showMessageDialog(null, "Esa compra o producto no existe", "Accion denegado", 1);
+                    JOptionPane.showMessageDialog(null, "No se elimino el registro", "Accion Denegada", 1);
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(ProductosT.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else{
-            JOptionPane.showMessageDialog(null, "Hay algún campo vacio aún", "Accion denegado", 1);
+            JOptionPane.showMessageDialog(null, "No hay ningun registro seleccionado", "Accion denegada", 1);
         }
-    }//GEN-LAST:event_btnGuardarMouseClicked
+    }//GEN-LAST:event_btnBorrarCMouseClicked
+
+    private void btnGuardarCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarCMouseClicked
+        // TODO add your handling code here:
+        ControladorCompra compraC = new ControladorCompra(this);
+        if(!tfTotalC.getText().equals("")){
+            try {
+                if(compraC.registrarCompra()){
+                    JOptionPane.showMessageDialog(null, "La compra se registro", "Registro aceptado", 1);
+                    actualizarTablaP();
+                    actualizarTablaC();
+                    actualizarTablaDC();
+                }else{
+                    JOptionPane.showMessageDialog(null, "La compra no se registro", "Registro Denegado", 1);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(ProductosT.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Hay algún campo vacio aún", "Acceso denegado", 1);
+        }
+    }//GEN-LAST:event_btnGuardarCMouseClicked
+
+    private void btnActualizarP1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarP1MouseClicked
+        // TODO add your handling code here:
+        ControladorCompraD compraDC = new ControladorCompraD(this);
+        int fila = tablaCD.getSelectedRow();
+        if(fila > -1){
+            try {
+                if(compraDC.actualizarCompraD()){
+                    JOptionPane.showMessageDialog(null, "El registro fue modificado", "Accion aceptada", 1);
+                    actualizarTablaP();
+                    actualizarTablaC();
+                    actualizarTablaDC();
+                }else{
+                    JOptionPane.showMessageDialog(null, "El registro no fue modificado", "Accion denegada", 1);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(ProductosT.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "No hay ningun registro seleccionado", "Accion denegada", 1);
+        }
+    }//GEN-LAST:event_btnActualizarP1MouseClicked
 
     private void btnBorrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBorrarMouseClicked
         // TODO add your handling code here:
@@ -678,19 +799,59 @@ public class ProductosT extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBorrarMouseClicked
 
-    private void btnActualizarP1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarP1MouseClicked
+    private void btnGuardarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardarMouseEntered
+
+    private void btnGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseClicked
         // TODO add your handling code here:
         ControladorCompraD compraDC = new ControladorCompraD(this);
-        int fila = tablaCD.getSelectedRow();
+        ControladorProducto productoC = new ControladorProducto(this);
+        ControladorCompra compraC = new ControladorCompra(this);
+        if(!this.tfCvCompraCD.getText().equals("") && !this.tfProductoCD.getText().equals("") && !this.tfCantidadCD.getText().equals("") && !this.tfPrecioCD.getText().equals("")){
+            try {
+                System.out.println(":(");
+                if(productoC.buscarProductos(this.tfProductoCD.getText()) != null && productoC.buscarProductos(this.tfCvCompraCD.getText()) != null){
+                    if(compraDC.registrarCompraD()){
+                        JOptionPane.showMessageDialog(null, "El detalle se registro", "Registro aceptado", 1);
+                        System.out.println(":)");
+                        actualizarTablaP();
+                        actualizarTablaC();
+                        actualizarTablaDC();
+                    }else{
+                        JOptionPane.showMessageDialog(null, "El detalle no se registro", "Registro Denegado", 1);
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(null, "Esa compra o producto no existe", "Accion denegado", 1);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(ProductosT.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Hay algún campo vacio aún", "Accion denegado", 1);
+        }
+    }//GEN-LAST:event_btnGuardarMouseClicked
+
+    private void btnActualizarPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarPMouseClicked
+        // TODO add your handling code here:
+        ControladorProducto productoP = new ControladorProducto(this);
+        int fila = tablaP.getSelectedRow();
         if(fila > -1){
             try {
-                if(compraDC.actualizarCompraD()){
-                    JOptionPane.showMessageDialog(null, "El registro fue modificado", "Accion aceptada", 1);
-                    actualizarTablaP();
-                    actualizarTablaC();
-                    actualizarTablaDC();
+                boolean bandera = productoP.buscarProductos(String.valueOf(tablaP.getValueAt(tablaP.getSelectedRow(), 0))).getPreciosvo() != Double.parseDouble((String) tablaP.getValueAt(tablaP.getSelectedRow(), 6));
+                if(!this.tfGanaciaP.getText().equals("") && bandera==false){
+                    try {
+                        System.out.println("Hol");
+                        if(productoP.actualizarProducto()){
+                            JOptionPane.showMessageDialog(null, "El registro fue modificado", "Accion aceptada", 1);
+                        }else{
+                            JOptionPane.showMessageDialog(null, "El registro no fue modificado", "Accion denegada", 1);
+                        }
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ProductosT.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }else{
-                    JOptionPane.showMessageDialog(null, "El registro no fue modificado", "Accion denegada", 1);
+                    JOptionPane.showMessageDialog(null, "No has actualizado las ganancias por favor llenen de nuevo el campo de ganancia", "Accion denegada", 1);
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(ProductosT.class.getName()).log(Level.SEVERE, null, ex);
@@ -698,47 +859,110 @@ public class ProductosT extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(null, "No hay ningun registro seleccionado", "Accion denegada", 1);
         }
-    }//GEN-LAST:event_btnActualizarP1MouseClicked
-
-    private void jButtonCOMPRASMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCOMPRASMouseClicked
         try {
-            // TODO add your handling code here:
-            jmenu.setSelectedIndex(1);
             actualizarTablaP();
             actualizarTablaC();
             actualizarTablaDC();
         } catch (SQLException ex) {
             Logger.getLogger(ProductosT.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButtonCOMPRASMouseClicked
+        System.out.println("Hola");
+    }//GEN-LAST:event_btnActualizarPMouseClicked
 
-    private void jButtonProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonProductosMouseClicked
-        try {
-            // TODO add your handling code here:
-            jmenu.setSelectedIndex(0);
-            actualizarTablaP();
-            actualizarTablaC();
-            actualizarTablaDC();
-        } catch (SQLException ex) {
-            Logger.getLogger(ProductosT.class.getName()).log(Level.SEVERE, null, ex);
+    private void btnGuardarPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarPMouseClicked
+        if(!tfProducto.getText().equals("") && !this.tfCodigo.getText().equals("") && !this.tfExitencias.getText().equals("") && !this.tfMarca.getText().equals("") && !this.tfPrecio.getText().equals("") && !this.tfGanaciaP.getText().equals("")){
+            ControladorProducto productoC = new ControladorProducto(this);
+            try {
+                // TODO add your handling code here:
+                if(productoC.buscarProductos(this.tfCodigo.getText()) == null){
+                    if(productoC.registrarProductos()){
+                        JOptionPane.showMessageDialog(null, "El producto se registro", "Registro aceptado", 1);
+                        System.out.println("Hola");
+                    }else{
+                        JOptionPane.showMessageDialog(null, "El producto no se registro", "Registro denegado", 1);
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(null, "El producto Ya existe", "Registro denegado", 1);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(ProductosT.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                actualizarTablaP();
+                actualizarTablaC();
+                actualizarTablaDC();
+            } catch (SQLException ex) {
+                Logger.getLogger(ProductosT.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Hay algún campo vacio aún", "Acceso denegado", 1);
         }
-    }//GEN-LAST:event_jButtonProductosMouseClicked
+    }//GEN-LAST:event_btnGuardarPMouseClicked
 
-    private void jButtonCDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCDMouseClicked
-        try {
-            // TODO add your handling code here:
-            jmenu.setSelectedIndex(2);
-            actualizarTablaP();
-            actualizarTablaC();
-            actualizarTablaDC();
-        } catch (SQLException ex) {
-            Logger.getLogger(ProductosT.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButtonCDMouseClicked
-
-    private void btnGuardarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseEntered
+    private void btnBorrarPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBorrarPMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnGuardarMouseEntered
+        ControladorProducto productoP = new ControladorProducto(this);
+        int fila = tablaP.getSelectedRow();
+        if(fila > -1){
+            System.out.println("La columna elegida es: "+fila+" y el valor de la clave es"+tablaP.getValueAt(fila, 0).toString());
+            try {
+                if(productoP.eliminarProductos()){
+                    JOptionPane.showMessageDialog(null, "Se elimino el registro", "Accion Autorizada", 1);
+
+                }else{
+                    JOptionPane.showMessageDialog(null, "No se elimino el registro", "Accion Denegada", 1);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(ProductosT.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "No hay ningun registro seleccionado", "Accion denegada", 1);
+        }
+        try {
+            actualizarTablaP();
+            actualizarTablaC();
+            actualizarTablaDC();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductosT.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnBorrarPMouseClicked
+
+    private void tfProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfProductoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfProductoActionPerformed
+
+    private void btnBuscarCsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarCsMouseClicked
+        // TODO add your handling code here:
+        ControladorProducto productoC = new ControladorProducto(this);
+        try {
+            System.out.println(productoC.buscarProductos(this.tfNumProCS.getText()));
+            if(productoC.buscarProductos(this.tfNumProCS.getText()) != null){
+                productoC.detalleP(this);
+                productoC.fechaOferta();
+                actualizarTablaCs();
+            }else{
+                JOptionPane.showMessageDialog(null, "Ese producto no existe", "Accion denegado", 1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductosT.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnBuscarCsMouseClicked
+
+    private void btnVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVentasMouseClicked
+        // TODO add your handling code here:
+        ControladorProducto productoP = new ControladorProducto(this);
+        int fila = tablaProcutosA.getSelectedRow();
+        if(fila > -1 && !this.tfCantidadR.getText().equals("")){
+            try {
+                productoP.realizarCompra();
+                actualizarTablaProcutosA();
+            } catch (SQLException ex) {
+                Logger.getLogger(ProductosT.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "No hay ningun registro seleccionado o el campo de cantidad esta vacio", "Accion denegada", 1);
+        }
+    }//GEN-LAST:event_btnVentasMouseClicked
     
     private void actualizarTablaP() throws SQLException{
         ControladorProducto productoC = new ControladorProducto(this);
@@ -816,17 +1040,53 @@ public class ProductosT extends javax.swing.JFrame {
         tablaCD.setModel(tabla);
         tablaCD.clearSelection();
     }
+    private void actualizarTablaCs() throws SQLException{
+        ControladorProducto productoC = new ControladorProducto(this);
+        List<Object> detalle = productoC.detalleP(this);
+        DefaultTableModel tabla = new DefaultTableModel();
+        tabla.addColumn("Marca");
+        tabla.addColumn("Fecha");
+        tabla.addColumn("Cantidad");
+        String [] fila = new String[3];
+        fila[0]=String.valueOf(detalle.get(0));
+        fila[1]=String.valueOf(detalle.get(1));
+        fila[2]=String.valueOf(detalle.get(2));
+        tabla.addRow(fila);
+        tablaCs.setModel(tabla);
+        tablaCs.clearSelection();
+    }
+    private void actualizarTablaProcutosA() throws SQLException{
+        ControladorProducto productoC = new ControladorProducto(this);
+        DefaultTableModel tabla = new DefaultTableModel();
+        tabla.addColumn("Clave");
+        tabla.addColumn("Nombre");
+        tabla.addColumn("Existencias");
+        List<Producto> productos = productoC.listar();
+        String [] fila = new String[3];
+        for(int i = 0;i<productos.size();i++){
+            Producto producto = productos.get(i);
+            fila [0] = producto.getCvproducto();
+            fila [1] = producto.getNombre();
+            fila [2] = String.valueOf(producto.getExistencias());
+            tabla.addRow(fila);
+        }
+        tablaProcutosA.setModel(tabla);
+        tablaProcutosA.clearSelection();
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel PanelConsulEsp;
     private javax.swing.JButton btnActualizarP;
     private javax.swing.JButton btnActualizarP1;
     private javax.swing.JButton btnActualizarP2;
     private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btnBorrarC;
     private javax.swing.JButton btnBorrarP;
+    private javax.swing.JButton btnBuscarCs;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnGuardarC;
     private javax.swing.JButton btnGuardarP;
+    private javax.swing.JButton btnVentas;
     private javax.swing.JButton jButtonCD;
     private javax.swing.JButton jButtonCOMPRAS;
     private javax.swing.JButton jButtonProductos;
@@ -837,8 +1097,16 @@ public class ProductosT extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -846,21 +1114,36 @@ public class ProductosT extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanelPANEL;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTabbedPane jmenu;
+    private javax.swing.JLabel precioO;
+    private javax.swing.JLabel precioT;
     private javax.swing.JTable tablaC;
     private javax.swing.JTable tablaCD;
+    private javax.swing.JTable tablaCU;
+    private javax.swing.JTable tablaCs;
     private javax.swing.JTable tablaP;
+    private javax.swing.JTable tablaProcutosA;
     private javax.swing.JTextField tfCantidadCD;
+    private javax.swing.JTextField tfCantidadR;
     private javax.swing.JTextField tfCodigo;
     private javax.swing.JTextField tfCvCompraCD;
     private javax.swing.JTextField tfExitencias;
+    private javax.swing.JTextField tfGanaciaP;
     private javax.swing.JTextField tfMarca;
+    private javax.swing.JTextField tfNumProCS;
     private javax.swing.JTextField tfPrecio;
     private javax.swing.JTextField tfPrecioCD;
     private javax.swing.JTextField tfProducto;

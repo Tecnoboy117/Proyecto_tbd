@@ -12,14 +12,9 @@ public class LoginAC {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    try {
-                        new ProductosT().setVisible(true);
-                    } catch (SQLException ex) {
-                        Logger.getLogger(LoginAC.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    new Login().setVisible(true);
                 }
-            });
-
+            }
+        );
     }
-    
 }

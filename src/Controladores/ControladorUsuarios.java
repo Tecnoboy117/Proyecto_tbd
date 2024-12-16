@@ -35,7 +35,13 @@ public class ControladorUsuarios {
         Usuarios modeloU = new Usuarios();
         modeloU.setUser(vistaL.getJuser());
         modeloU.setPassword(vistaL.getJpass());
-        return Usuarios.acceso(con.getConexion(), modeloU);
+        return Usuarios.acceso(Conexion.getConexion(), modeloU);
+    }
+    public boolean accesoA() throws SQLException{
+        Usuarios modeloU = new Usuarios();
+        modeloU.setUser(vistaR.getTfUsuarioA());
+        modeloU.setPassword(vistaR.getTfContraA());
+        return Usuarios.consultarAdministrador(Conexion.getConexion(), modeloU);
     }
     
     public boolean registro() throws SQLException{
@@ -43,6 +49,8 @@ public class ControladorUsuarios {
         modeloU.setUser(vistaR.getjUsuario());
         String passwordE = modeloU.encriptarPassword(vistaR.getjPasswordCrea());
         modeloU.setPassword(passwordE);
+        modeloU.setRol(vistaR.getTiposUsuario().getSelectedIndex()+1);
+        System.out.println("El rol es: " + vistaR.getTiposUsuario().getSelectedIndex());
         if(Usuarios.agregarUsuario(con.getConexion(), modeloU)){
             JOptionPane.showMessageDialog(null, "Se registro usuario", "Registro autorizado", 1);
         }else{

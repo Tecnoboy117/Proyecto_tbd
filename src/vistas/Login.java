@@ -16,6 +16,7 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         Usuarios modeloUsu = new Usuarios();
         controlUsu = new ControladorUsuarios(this);
+        System.out.println("Hola(");
     }
 
     public String getJpass() {

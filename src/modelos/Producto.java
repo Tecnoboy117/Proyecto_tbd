@@ -6,6 +6,8 @@ package modelos;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author josea
@@ -29,7 +31,7 @@ public class Producto {
         this.preciosu = 0.0;
         this.preciosc = 0.0;
         this.preciosvo = 0.0;
-        this.estado = 2;
+        this.estado = 0;
     }
 
     // Constructor
@@ -192,6 +194,69 @@ public class Producto {
                 }
             }
         }
+    }
+    public static List<Object> detalleProducto(Connection conn, String cvproducto) throws SQLException {
+        List<Object> detalle = new ArrayList();
+        String procedimiento = "{CALL DetallerProducto(?, ?, ?, ?)}";
+        try (CallableStatement stmt = (CallableStatement) conn.prepareCall(procedimiento)) {
+            stmt.setString(1, cvproducto);
+            stmt.registerOutParameter(2, Types.VARCHAR);  // Para marcaP
+            stmt.registerOutParameter(3, Types.DATE);     // Para fechaP
+            stmt.registerOutParameter(4, Types.INTEGER);
+            stmt.execute();
+            detalle.add(stmt.getString(2));
+            detalle.add(stmt.getDate(3));
+            detalle.add(stmt.getInt(4));
+        }
+        return detalle;
+    }
+    
+    public static List<Object> ultimaFecha(Connection conn, String cvproducto) throws SQLException{
+        List<Object> detalle = new ArrayList();
+        String procedimiento = "{CALL UltimaFecha(?, ?, ?, ?)}";
+        try (CallableStatement stmt = (CallableStatement) conn.prepareCall(procedimiento)) {
+            stmt.setString(1, cvproducto);
+            stmt.registerOutParameter(2, Types.VARCHAR);  // Para marcaP
+            stmt.registerOutParameter(3, Types.DATE);     // Para fechaP
+            stmt.registerOutParameter(4, Types.INTEGER);
+            stmt.execute();
+            detalle.add(stmt.getString(2));
+            detalle.add(stmt.getDate(3));
+            detalle.add(stmt.getInt(4));
+        }
+        return detalle;
+    }
+    
+    public static double obtenerOferta(Connection conn, String cvproducto) throws SQLException{
+        int scvproducto = Integer.parseInt(cvproducto);
+        double oferta; 
+        String procedimiento = "{CALL ObtenerOferta(?)}";
+        try (CallableStatement stmt = (CallableStatement) conn.prepareCall(procedimiento)) {
+            stmt.setInt("cvproduct", scvproducto);
+            stmt.registerOutParameter(1, Types.INTEGER);
+            stmt.execute();
+            oferta = stmt.getDouble("cvproduct");
+        }
+        if(oferta < 0.0){
+           JOptionPane.showMessageDialog(null, "Este producto no esta en oferta", "Oferta invalida", 1);
+        }
+         return oferta;
+    }
+    
+    public static void realizarCompra(Connection conn, String cvproducto, int cantidad) throws SQLException{
+        String procedimiento = "{CALL RealizarCompra(?, ?, ?)}";
+        int bandera;
+        try (CallableStatement stmt = (CallableStatement) conn.prepareCall(procedimiento)) {
+            stmt.setString("cvproduct", cvproducto);
+            stmt.setInt("cantidadP", cantidad);
+            stmt.registerOutParameter(3, Types.INTEGER);
+            stmt.execute();
+            bandera = stmt.getInt(3);
+        }
+        if (bandera==0){
+            JOptionPane.showMessageDialog(null, "La transaccion no fue completada", "Transación", 1);
+        }
+        JOptionPane.showMessageDialog(null, "La transaccion fue completada", "Transacción", 1);
     }
 
     @Override
